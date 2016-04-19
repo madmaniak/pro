@@ -1,2 +1,2 @@
-message-bus: disque-server
-static-files: sh -c 'cd ./servers/webpack && exec npm start'
+bus: disque-server
+static: sh -c 'cd ./servers/webpack && exec npm start'
