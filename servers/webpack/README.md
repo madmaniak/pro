@@ -7,6 +7,11 @@ images.
 
 [http://webpack.github.io/docs](http://webpack.github.io/docs)
 
+```
+cd servers/webpack
+npm install
+```
+
 ## Procfile
 
 ```
