@@ -6,4 +6,6 @@ primusO.on 'open', ->
   primusI.id (id) -> primusO.write(id)
 
 Dispatcher.send = (data) -> primusI.write data
-primusO.on 'data', (data) -> Dispatcher.trigger data.event, data; console.log data
+primusO.on 'data', (data) ->
+  console.log data
+  Dispatcher.trigger data.event, data
