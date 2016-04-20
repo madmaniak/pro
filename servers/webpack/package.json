@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"webpack-server": "webpack-dev-server --hot --progress --colors",
+    "webpack-server": "webpack-dev-server --hot --progress --colors",
     "web-server": "http-server -p 3000 .",
     "start": "npm run webpack-server & npm run web-server"
   },
@@ -28,5 +28,9 @@
     "svgo": "^0.6.4",
     "svgo-loader": "^1.1.0",
     "url-loader": "^0.5.7"
+  },
+  "dependencies": {
+    "backbone-events-standalone": "^0.2.7",
+    "lodash": "^4.11.1"
   }
 }

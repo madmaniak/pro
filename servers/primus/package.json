@@ -1,0 +1,18 @@
+{
+  "name": "primus-dialog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "binary-pack": "^1.0.2",
+    "engine.io": "^1.6.8",
+    "primus": "^5.1.0",
+    "thunk-disque": "^0.5.3",
+    "thunk-redis": "^1.5.5"
+  }
+}
