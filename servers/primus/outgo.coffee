@@ -23,6 +23,6 @@ get_jobs = ->
       L.each jobs, (payload) ->
         job = JSON.parse payload[2]
         spark_id = connections[job.sid]
-        primus.spark(spark_id).write job.data
+        primus.spark(spark_id)?.write job.data
 
 get_jobs()
