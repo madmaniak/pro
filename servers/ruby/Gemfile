@@ -1,0 +1,13 @@
+ruby '2.2.2'
+source 'https://rubygems.org'
+
+# pro gems:
+gem 'concurrent-ruby'
+gem 'concurrent-ruby-ext'
+gem 'connection_pool'
+gem 'disque'
+gem 'require_all'
+gem 'semantic_logger'
+
+# your gems:
+
