@@ -1,4 +1,3 @@
-L = require('lodash')
 base = require('./base')
 
 connections = {}
