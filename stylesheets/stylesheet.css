@@ -1,4 +1,8 @@
 body {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
   margin: 0;
   padding: 0;
   background: #151515 url("../images/bkg.png") 0 0;
@@ -38,7 +42,6 @@ li {
 header {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
-  border-bottom: 1px dashed #b5e853;
   padding: 20px 0;
   margin: 0 0 40px 0;
 }
@@ -68,21 +71,22 @@ header h2 {
   color: #666;
 }
 
-#downloads .btn {
-  display: inline-block;
-  text-align: center;
-  margin: 0;
-}
-
-/* Main Content
-*/
-
 #main_content {
-  width: 100%;
   -webkit-font-smoothing: antialiased;
+  flex: 1;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: center;
+  -webkit-justify-content: center;
+  flex-wrap:         wrap;
+  -webkit-flex-wrap: wrap;
 }
-section img {
-  max-width: 100%
+.box {
+  -webkit-flex-basis: 400px;
+  flex-basis:         400px;
+  margin: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -122,11 +126,6 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   color: #999;
   margin: 0 0 5px 0;
-}
-
-dt {
-  font-style: italic;
-  font-weight: bold;
 }
 
 ul li {
