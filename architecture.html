@@ -1,0 +1,75 @@
+---
+layout: default
+title: Architecture
+meta: Pro architecture allows you to use any technology. It promotes speed and scales both ways vertically and horizontally
+---
+
+<div class="box">
+  <img src="images/architecture.svg" />
+</div>
+
+<div class="box">
+  <h3>User Interface</h3>
+  <p>
+  Since <a href="https://facebook.github.io/react/">React</a> we have so many good tools to deal with UI on client's side it's just a waste of resources to render html on the server.
+  Moreover you can't deal with user actions on the server.
+  </p>
+  <p>
+  Using one of these tools you can prepare whole UI as static files and serve them from <a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>.
+  Browser downloads static files only once and then it's cached. There's no more performant way of dealing with UI.
+  </p>
+  <h3>Frontend Store</h3>
+  <p>
+  Keep all your data in one place. Otherwise you'll need to synchronize the pieces which is hard and unnecessary.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Frontend Dispatcher</h3>
+  <p>
+  If you keep your code loose coupled you can always add and remove functionalities without interfering other parts of application.
+  A way to achieve this is using a dispatcher. Instead of calling foreign function directly you emit an event which you subscribe in other services and serve.
+  There's no error if the event is not catched.
+  </p>
+  <p>
+  In <strong>Pro</strong> dispatcher is the place when websocket communication starts and ends. When there's a new message from the backend dispatcher emits proper event.
+  </p>
+  <p>
+  JavaScript in a browser is single-threaded and there's no reason to use more than one dispatcher.
+  </p>
+</div>
+
+<div class="box">
+  <h3>WebSocket</h3>
+  <p>
+  Go out of the HTTP box. With HTTP you establish connection for every action and send a lot of redundant headers both ways.
+  That means it's relatively slow. It's 10 times faster to use websocket (considering 10k requests of average size).
+  Websocket is also bidirectional and allows server to send data without asking.
+  </p>
+
+  <h3>Thin Communication Layer</h3>
+  <p>
+  This layer passes messages between internal message bus and outside world. It's also an authorizing point.
+  Because it does nothing else it's really fast.
+  </p>
+
+  <h3>Message Bus</h3>
+  <p>
+  Bus is a common medium for each service which binds it all in one application. Speed guaranties in-memory implementation.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Consumers</h3>
+  <p>
+  Since we're using a bus we can write services in any existing techology and we can run them in multiple instances or threads.
+  Making more instances is cheap because stack of particular service is reduced to the task.
+  </p>
+
+  <h3>Scaling</h3>
+  <p>
+  To get minimal latency it's recommended to scale verticaly.
+  <strong>Pro</strong> architecture scales efficiently on a single server and allows to serve more than million parallel connections.
+  But if you need even more each element of <strong>Pro</strong> can be easily parallelized on another server.
+  </p>
+</div>

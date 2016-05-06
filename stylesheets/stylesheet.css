@@ -65,10 +65,24 @@ header h1:before {
   font-size: 24px;
 }
 
+header h1 a {
+  color: #b5e853;
+  text-decoration: none;
+}
+
 header h2 {
   font-size: 18px;
   font-weight: 300;
   color: #666;
+}
+
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 #main_content {

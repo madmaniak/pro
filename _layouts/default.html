@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Pro - {{ page.title }}</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1><a href="{{site.baseurl}}/">Pro</a></h1>
+        <h4>{{ page.title }}</h4>
+        <h2>{{ page.meta }}</h2>
+
+        <nav>
+          <a href="https://github.com/madmaniak/pro">Install</a>
+          <a href="{{site.baseurl}}/architecture.html">Architecture</a>
+          <a href="{{site.baseurl}}/solutions.html">Solutions</a>
+          <a href>Structure</a>
+          <a href>Benchmarks</a>
+        </nav>
+      </div>
+    </header>
+
+    <div id="main_content">
+      {{ content }}
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,83 @@
+---
+layout: default
+title: Solutions
+meta: It's up to you what do you use but as a default you have the very best.
+---
+
+<div class="box">
+  <img src="images/solutions.svg" />
+</div>
+
+<div class="box">
+  <h3>Webpack</h3>
+  <p>
+  I used to choose <a href="https://github.com/rails/sprockets-rails">Sprockets Rails</a> for bundling assets.
+  I'd use it still but it doesn't deal well with node modules which is a must nowadays.
+  <a href="http://webpack.github.io">Webpack</a> has all tools needed for static files.
+  </p>
+
+  <h3>Backbone.Events</h3>
+  <p>
+  Dispatcher is a simple concept.
+  It doesn't really matter if you use <a href="https://nodejs.org/api/events.html">EventEmitter</a> from Node.js or
+  <a href="http://backbonejs.org/#Events">Events</a> from Backbone.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Imba</h3>
+  <p>
+  There's nothing else like <a href="http://imba.io/home">Imba</a>.
+  Among others it's a language with syntax thought to deal with DOM in a component way which transpiles to JS.
+  It outperforms other solutions and will make you think if you need native versions of your application at all.
+  The lack of complete documentation is a huge drawback. I'll try to compensate it with blog posts.
+  </p>
+  <p>
+  Of course the most popular component based solution is <a href="https://facebook.github.io/react/">React</a>
+  and I'll be glad to accept pull request with this alternative.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Pure JS Object as Store</h3>
+  <p>
+  Currently it's hype on immutable data and "time travelling". It looks cool but honestly in most cases it's not needed.
+  Basically pure JS object is fine for storing data - and there's no simpler and faster way than mutating.
+  If you need features like undo/redo you should be able to run them on particular attributes instead of whole store.
+  </p>
+  <p>
+  Anyway I'll be glad to see integrations like <a href="http://redux.js.org/">Redux</a>.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Primus</h3>
+  <p>
+  <a href="https://github.com/primus/primus">Primus</a> is an ultimate solution for websockets on Node.js.
+  You can choose from many different engines or plugins.
+  </p>
+  <p>
+  I'd like to see implementation of thin communication layer in <a href="http://elixir-lang.org">Elixir</a>
+  to have <a href="http://www.phoenixframework.org/blog/the-road-to-2-million-websocket-connections">such</a> results or even better.
+  </p>
+
+  <h3>Disque</h3>
+  <p>
+  <a href="https://github.com/antirez/disque">Disque</a> is in-memory message broker.
+  It's made by the same guy as <a href="http://redis.io">Redis</a>.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Ruby</h3>
+  <p>
+  I've implemented consumer in <a href="https://www.ruby-lang.org">Ruby</a> as it's my native language.
+  Each job is served in a separate thread.
+  I've used <a href="https://github.com/ruby-concurrency/concurrent-ruby">concurrent-ruby</a> with it's C extensions
+  for MRI. It gave stunning results in benchmarks.
+  </p>
+
+  <p>
+  I'd like to see consumers in other technologies like <a href="https://www.python.org">Python</a> or <a href="https://nodejs.org">Node.js</a>.
+  </p>
+</div>
