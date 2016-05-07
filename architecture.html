@@ -4,7 +4,7 @@ title: Architecture
 meta: Pro architecture allows you to use any technology. It promotes speed and scales both ways vertically and horizontally
 ---
 
-<div class="box">
+<div class="box image">
   <img src="images/architecture.svg" />
 </div>
 
@@ -16,23 +16,23 @@ meta: Pro architecture allows you to use any technology. It promotes speed and s
   </p>
   <p>
   Using one of these tools you can prepare whole UI as static files and serve them from <a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>.
-  Browser downloads static files only once and then it's cached. There's no more performant way of dealing with UI.
+  Browser downloads static files only once and then it's cached. In terms of performance, there’s no better way to deal with UI.
   </p>
   <h3>Frontend Store</h3>
   <p>
-  Keep all your data in one place. Otherwise you'll need to synchronize the pieces which is hard and unnecessary.
+  Keep all your data in one place. Simple and effective, without tying pieces together which is hard and unnecessary.
   </p>
 </div>
 
 <div class="box">
   <h3>Frontend Dispatcher</h3>
   <p>
-  If you keep your code loose coupled you can always add and remove functionalities without interfering other parts of application.
-  A way to achieve this is using a dispatcher. Instead of calling foreign function directly you emit an event which you subscribe in other services and serve.
+  If you keep your code loose coupled you can always add and remove functionalities without interfering with other parts of application.
+  Dispatcher is a way to achieve this. Instead of calling foreign function directly you emit an event which you subscribe to in other services.
   There's no error if the event is not catched.
   </p>
   <p>
-  In <strong>Pro</strong> dispatcher is the place when websocket communication starts and ends. When there's a new message from the backend dispatcher emits proper event.
+  In <strong>Pro</strong> dispatcher is the place where websocket communication starts and ends. When there's a new message from the backend dispatcher emits proper event.
   </p>
   <p>
   JavaScript in a browser is single-threaded and there's no reason to use more than one dispatcher.
@@ -49,8 +49,8 @@ meta: Pro architecture allows you to use any technology. It promotes speed and s
 
   <h3>Thin Communication Layer</h3>
   <p>
-  This layer passes messages between internal message bus and outside world. It's also an authorizing point.
-  Because it does nothing else it's really fast.
+  This layer passes messages between internal message bus and outside world.
+  Beside authorization that's the only responsibility and it makes it really fast.
   </p>
 
   <h3>Message Bus</h3>

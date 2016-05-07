@@ -103,6 +103,10 @@ nav a:hover {
   margin: 20px;
 }
 
+.box.image {
+  flex-basis: 600px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
