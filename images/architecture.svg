@@ -110,10 +110,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="117.08697"
+     inkscape:cx="-14.737936"
      inkscape:cy="317.55875"
      inkscape:document-units="px"
-     inkscape:current-layer="g6750"
+     inkscape:current-layer="g6647"
      showgrid="false"
      inkscape:window-width="3104"
      inkscape:window-height="1758"
@@ -133,7 +133,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -229,7 +229,7 @@
              sodipodi:role="line"
              id="tspan4416"
              x="116.42857"
-             y="635.21936"></tspan></text>
+             y="635.21936" /></text>
         <text
            xml:space="preserve"
            style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Monospace;-inkscape-font-specification:Monospace"
@@ -530,7 +530,7 @@
              id="tspan4795">bus</tspan></text>
         <path
            sodipodi:type="arc"
-           style="fill:none;stroke:#b5e853;stroke-width:2.86734319;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:none;stroke:#b5e853;stroke-width:4.72688336;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
            id="path5284"
            sodipodi:cx="-193.92857"
            sodipodi:cy="557.7193"
@@ -554,7 +554,7 @@
            transform="matrix(0.24660695,0.24660695,0.24660695,-0.24660695,230.49005,1077.6522)" />
         <path
            sodipodi:type="arc"
-           style="fill:none;stroke:#eaeaea;stroke-width:2.86734319;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:none;stroke:#eaeaea;stroke-width:4.72688336;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
            id="path5284-5"
            sodipodi:cx="-193.92857"
            sodipodi:cy="557.7193"

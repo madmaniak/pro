@@ -1,0 +1,79 @@
+---
+layout: default
+title: Structure
+meta: You get the basic structure in which you have endless freedom
+---
+
+<div class="box image">
+  <img src="images/structure.svg" />
+</div>
+
+<div class="box">
+  <h3>App</h3>
+  <p>
+  Directories inside are just a special case of components. These components are roots of your application.
+  Think of them as rooms if your application is a building.
+  </p>
+
+  <h3>Components</h3>
+  <p>
+  Components are real things you can touch as a user. If something has source in user action it's a part of a component.
+  Treat these as items you can place wherever you want in your rooms. If a component is not reusable and it's specific
+  for one place keep it in room subdirectory though.
+  </p>
+  <p>In <strong>Pro</strong> component is a fullstack concept and it
+  contains also backend.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Services</h3>
+  <p>
+  Services just like components are reusable but they are not material.
+  They are pure ideas you can use in components, jobs or both.
+  </p>
+
+  <h3>Jobs</h3>
+  <p>
+  As components lives in users world jobs are in hands of operators.
+  They may be fired periodically or manually. As you don't need to care about latency here you might want
+  to run it on a separate server with a separate message bus.
+  </p>
+</div>
+
+<div class="box">
+
+  <h3>Servers</h3>
+  <p>
+  This is the most amazing part of <strong>Pro</strong>. Here are placed implementations of different technologies.
+  All of them know and share the structure. That's why you can be polyglot and use whatever language you want in one application.
+  </p>
+
+  <h3>Procfile</h3>
+  <p>
+  This is a configuration file of <a href="https://github.com/ddollar/foreman">Foreman</a>.
+  If you want to support some technology you need to choose the server and tell how to boot it in here.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Example component</h3>
+  <p>
+    <blockquote>
+      articles/<br />
+      <blockquote>
+        article/<br />
+        <blockquote>
+          index.jsx<br />
+          to_pdf.py<br />
+          edit.rb
+        </blockquote>
+        index.jsx<br />
+        article.scss<br />
+        icon.png<br />
+        get.rb<br />
+        README.md
+      </blockquote>
+    </blockquote>
+  </p>
+</div>
