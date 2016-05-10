@@ -1,0 +1,75 @@
+---
+layout: default
+title: Benchmarks
+meta: It beats frameworks really badly. Don't think this is the main feature of Pro. It's just a side effect
+footer: <div id="footer"><img src="images/benchmark.gif" width="820px" height="233px" /></div>
+---
+
+<div class="box image">
+  <img src="images/benchmarks.svg" />
+</div>
+
+<div class="box">
+  <h3>Machine</h3>
+  <p>
+  My laptop i7 2.20GHz × 8 16GB RAM with Ubuntu.
+  </p>
+
+  <h3>Method</h3>
+  <p>
+  I run 20k requests from a single client.
+  Each request has to wait for one second and reply with a string.
+  Waiting simulates non-blocking I/O operation.
+  {% highlight ruby %}
+  def perform(data)
+    sleep(1)
+    reply sid: data['sid'], data: "benchmarked!"
+  end{% endhighlight %}
+  </p>
+  <p>
+  I need some help with testing multiple clients though.
+  <a href="https://www.npmjs.com/package/odin-ws">Odin</a> seems to be the right tool
+  but it fails so far.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Results</h3>
+  <p>
+  To have all requests finished <strong>Pro</strong> needs <strong>23 seconds</strong> which gives <strong>870&nbsp;req/s</strong>.
+  </p>
+  <p>
+  Further investigation shows that first bottleneck is in websocket throughput.
+  If testing only this part it gets <strong>1000&nbsp;req/s</strong>.
+  </p>
+  <p>
+  Testing another part of <strong>Pro</strong> stack gives stunning <strong>6000&nbsp;req/s</strong> using around 35% CPUs.
+  This time the battleneck was in message bus.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Comparison</h3>
+  <p>
+  Let's compare to <a href="http://rubyonrails.org">Rails</a> which is the most popular framework I know by myself.
+  Because of single client and a fact that we need to wait for response before another request
+  this benchmark should take more than <strong>5.5h</strong> considering only sleeping part.
+  You could say that we should use background job but we can't reply with it.
+  With multiple clients on 16 instances it takes <strong>4018 seconds</strong> (over an hour) which gives less than
+  <strong>5&nbsp;req/s</strong>.
+  </p>
+  <p>
+  If for some reason you need your old framewrok you can run it as a consumer.
+  </p>
+</div>
+
+<div class="box">
+  <h3>Possible improvements</h3>
+  <p>
+  It's hard to say if having multiple connections will increase throughput of primus.
+  But it will if we'll have more instances of it. We have 7 more cores on this machine.
+  </p>
+  <p>
+  Having more disque instances is as easy as having one.
+  </p>
+</div>

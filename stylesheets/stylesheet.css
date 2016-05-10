@@ -97,6 +97,7 @@ nav a:hover {
   flex-wrap:         wrap;
   -webkit-flex-wrap: wrap;
 }
+
 .box {
   -webkit-flex-basis: 400px;
   flex-basis:         400px;
@@ -105,6 +106,10 @@ nav a:hover {
 
 .box.image {
   flex-basis: 600px;
+}
+
+#footer {
+  margin: 20px auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
