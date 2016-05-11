@@ -7,15 +7,18 @@ SemanticLogger.default_level = :trace
 
 class Service
 
+  SERVICE_POOL = Concurrent::CachedThreadPool.new
   include SemanticLogger::Loggable
 
   def run(job)
-    Concurrent::Promise
-      .new
-      .then{ perform(prepare(job)) }
-      .on_success{ |result| logger.trace "#{job}: OK" }
-      .rescue{ |reason| logger.error "#{job}: #{reason}" }
-      .execute
+    SERVICE_POOL.post do
+      begin
+        perform(prepare(job))
+        logger.trace "#{job}: OK"
+      rescue => reason
+        logger.error "#{job}: #{reason}"
+      end
+    end
   end
 
   private

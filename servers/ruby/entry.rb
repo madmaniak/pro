@@ -8,7 +8,7 @@ require_relative 'disque'
 require 'connection_pool'
 
 connect_disque = ->{ Disque.new(['127.0.0.1:7711']) }
-$dis = ConnectionPool.new(size: 6, timeout: 2) { connect_disque.call }
+$dis = ConnectionPool.new(size: 8, timeout: 2) { connect_disque.call }
 dis = connect_disque.call
 
 module Front; end
