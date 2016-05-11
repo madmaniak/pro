@@ -21,9 +21,15 @@ Read there also about needed dependencies. Then just:
 foreman start
 ```
 
+Visit [http://localhost:3000](http://localhost:3000). Blank page means good.
+
 ### Upgrade Pro to the newest version
 
 ```
 git pull pro master
 git push
 ```
+
+### Example app ###
+
+[pro-example-app](https://github.com/madmaniak/pro-example-app).
