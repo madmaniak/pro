@@ -12,7 +12,7 @@ footer: <div id="footer"><img src="images/benchmark.gif" width="820px" height="2
 <div class="box">
   <h3>Machine</h3>
   <p>
-  My laptop i7 2.20GHz × 8 16GB RAM with Ubuntu.
+  My laptop specs: i7 2.20GHz × 8 16GB RAM running Ubuntu.
   </p>
 
   <h3>Method</h3>
@@ -40,36 +40,37 @@ footer: <div id="footer"><img src="images/benchmark.gif" width="820px" height="2
   </p>
   <p>
   Further investigation shows that first bottleneck is in websocket throughput.
-  If testing only this part it gets <strong>1000&nbsp;req/s</strong>.
+  Testing only this part yields <strong>1000&nbsp;req/s</strong>.
   </p>
   <p>
   Testing another part of <strong>Pro</strong> stack gives stunning <strong>6000&nbsp;req/s</strong> using around 35% CPUs.
-  This time the battleneck was in message bus.
+  This time the bottleneck was the message bus.
   </p>
 </div>
 
 <div class="box">
   <h3>Comparison</h3>
   <p>
-  Let's compare to <a href="http://rubyonrails.org">Rails</a> which is the most popular framework I know by myself.
+  Let's compare to <a href="http://rubyonrails.org">Rails</a> which is the most popular framework I know.
   Because of single client and a fact that we need to wait for response before another request
-  this benchmark should take more than <strong>5.5h</strong> considering only sleeping part.
+  this benchmark would take more than <strong>5.5h</strong> considering only sleeping part.
   You could say that we should use background job but we can't reply with it.
   With multiple clients on 16 instances it takes <strong>4018 seconds</strong> (over an hour) which gives less than
   <strong>5&nbsp;req/s</strong>.
   </p>
   <p>
-  If for some reason you need your old framewrok you can run it as a consumer.
+  If for some reason you need your old framework, you can run it as a consumer.
   </p>
 </div>
 
 <div class="box">
   <h3>Possible improvements</h3>
   <p>
-  It's hard to say if having multiple connections will increase throughput of primus.
-  But it will if we'll have more instances of it. We have 7 more cores on this machine.
+  It's hard to say if multiple clients benchmark will show higher throughput.
+  But for sure <a href="https://github.com/primus/primus">primus</a> can be
+  scaled with more instances. We have 7 more cores to employ on this machine.
   </p>
   <p>
-  Having more disque instances is as easy as having one.
+  Having more <a href="https://github.com/antirez/disque">disque</a> instances is as easy as having one.
   </p>
 </div>
