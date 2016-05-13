@@ -16,7 +16,7 @@ body {
 
 .container {
   width: 90%;
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
 }
 
@@ -110,6 +110,11 @@ nav a:hover {
 
 #footer {
   margin: 20px auto;
+}
+
+#contact {
+  text-align: center;
+  margin-top: 60px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -264,4 +269,8 @@ form input[type=submit]:hover {
 
 :-ms-input-placeholder {
    color: #666;
+}
+
+.twitter-tweet-rendered {
+  margin: 10px auto;
 }
