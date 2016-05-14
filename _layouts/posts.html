@@ -10,7 +10,7 @@ layout: default
 <div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
-        this.page.url = "{{ site.baseurl }}{{ page.url }}";
+        this.page.url = location.href;
         this.page.identifier = "{{ page.date | date: "%m%d%Y" }}";
     };
     (function() {
