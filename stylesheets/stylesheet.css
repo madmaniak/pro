@@ -274,3 +274,7 @@ form input[type=submit]:hover {
 .twitter-tweet-rendered {
   margin: 10px auto;
 }
+
+.center {
+  text-align: center;
+}
