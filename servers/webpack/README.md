@@ -5,7 +5,9 @@ images.
 
 ## Setup
 
-[http://webpack.github.io/docs](http://webpack.github.io/docs)
+```
+npm install webpack -g
+```
 
 ```
 cd servers/webpack
@@ -17,3 +19,6 @@ npm install
 ```
 static-files: sh -c 'cd ./servers/webpack && exec npm start'
 ```
+## Documentation
+
+[http://webpack.github.io/docs/tutorials/getting-started](http://webpack.github.io/docs/tutorials/getting-started/)
