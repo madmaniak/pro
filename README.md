@@ -1,4 +1,4 @@
-## Pro - UDD polyglot anti-framework for the web or whatever
+## Pro - UDD polyglot anti-framework for the web and standalone applications
 
 [![Join the chat at https://gitter.im/madmaniak/pro](https://badges.gitter.im/madmaniak/pro.svg)](https://gitter.im/madmaniak/pro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
