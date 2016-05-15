@@ -8,4 +8,8 @@ primusO.on 'open', ->
 Dispatcher.send = (data) -> primusI.write data
 primusO.on 'data', (data) ->
   console.log data
-  Dispatcher.trigger data.event, data
+  parsed_data = JSON.parse(data)
+  if parsed_data.event
+    Dispatcher.trigger parsed_data.event, parsed_data
+  else
+    Store.update parsed_data
