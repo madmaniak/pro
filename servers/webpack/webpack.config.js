@@ -7,7 +7,7 @@ const paths = [
 
 module.exports = {
   context: __dirname,
-  entry: '../../services/starter',
+  entry: '../../services/pro/starter',
   output: {
      publicPath: 'http://localhost:8080/',
      filename: 'build/bundle.js'
