@@ -1,13 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
-
-require_relative 'custom'
+require 'connection_pool'
 
 require_relative 'string'
 require_relative 'service'
 require_relative 'disque'
 
-require 'connection_pool'
+require_relative 'custom'
+
 
 connect_disque = ->{ Disque.new(['127.0.0.1:7711']) }
 $dis = ConnectionPool.new(size: 8, timeout: 2) { connect_disque.call }
