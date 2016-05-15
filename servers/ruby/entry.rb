@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'bundler/setup'
 
+require_relative 'custom'
+
 require_relative 'string'
 require_relative 'service'
 require_relative 'disque'
