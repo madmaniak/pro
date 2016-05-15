@@ -20,11 +20,12 @@ get_jobs = ->
     then console.error(err)
     else
       L.each jobs, (payload) ->
-        job = JSON.parse payload[2]
-        if job.sid == 'all'
-          primus.write job.data
+        data = payload[2]
+        sid = /"sid":"([^"]*)"/.exec(data)[1]
+        if sid == 'all'
+          primus.write data
         else
-          spark_id = connections[job.sid]
-          primus.spark(spark_id)?.write job.data
+          spark_id = connections[sid]
+          primus.spark(spark_id)?.write data
 
 get_jobs()
