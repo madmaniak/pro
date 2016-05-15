@@ -14,8 +14,8 @@ git push -u origin master
 
 ```
 
-Checkout the servers directory and add/remove if needed in the Procfile.
-Read there also about needed dependencies. Then just:
+Checkout the [servers](https://github.com/madmaniak/pro/tree/master/servers) subdirectories
+and add/remove if needed in the Procfile. Read there also about needed dependencies. Then just:
 
 ```
 foreman start

@@ -3,6 +3,7 @@
 Backend.
 
 ## Setup
+[http://bundler.io/#getting-started](http://bundler.io/#getting-started)
 
 ```
 cd servers/ruby
