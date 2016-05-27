@@ -4,7 +4,6 @@ const paths = [
   path.resolve(__dirname, '..', '..', "components"),
   path.resolve(__dirname, '..', '..', "services")
 ];
-
 module.exports = {
   context: __dirname,
   entry: '../../services/pro/starter',
@@ -37,6 +36,7 @@ module.exports = {
   	  { test: /\.coffee/, loader: 'coffee-loader', include: paths }
     ]
   },
+  resolveLoader: { root: path.join(__dirname, "node_modules") },
   resolve: {
   extensions: ['', '.js', '.coffee', '.imba'],
     modulesDirectories: [ 'node_modules' ]

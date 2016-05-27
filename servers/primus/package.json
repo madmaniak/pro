@@ -8,7 +8,8 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "lodash": "^4.13.1",
     "binary-pack": "^1.0.2",
     "engine.io": "^1.6.8",
     "primus": "^5.1.0",
