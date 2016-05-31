@@ -20,7 +20,7 @@ and read there about dependencies. It takes about 30 minutes to install all of t
 
 #### Auto setup using Vagrant
 
-Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 or greater). If you've tried to install stuff manually make sure ther is no ```node_modules``` directory in ```servers/webpack``` and ```servers/primus```.
+Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 or greater). If you've tried to install stuff manually make sure there is no ```node_modules``` directory in ```servers/webpack``` and ```servers/primus```.
 
 ```
 vagrant up
