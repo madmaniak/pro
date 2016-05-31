@@ -1,1 +1,4 @@
 _site
+servers
+nodes.conf
+.vagrant

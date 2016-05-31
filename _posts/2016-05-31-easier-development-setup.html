@@ -1,0 +1,23 @@
+---
+layout: posts
+title: Easier development setup
+meta: I've just finished <a href="https://www.vagrantup.com">Vagrant</a> box for <strong>Pro</strong>. It gives you ready virtualized environment which is easy to use
+---
+
+<div class="center">
+  <img src="{{site.baseurl}}/images/posts/vagrant.png" width=198 height=200 />
+</div>
+<p>
+Box is based on Ubuntu 16.04. According to that you need to use the newest Vagrant (&lt;= v1.8.1).
+It solves the issue with new naming for network interfaces.
+</p>
+<p>
+To use <strong>Pro</strong> Vagrant box make sure there is no <strong>node_modules</strong> directory
+in <strong>servers/webpack</strong> or <strong>servers/primus</strong> then use following commands:
+{% highlight bash %}
+vagrant up
+vagrant ssh
+cd /vagrant
+foreman start
+{% endhighlight %}
+</p>
