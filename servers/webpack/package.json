@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack-server": "webpack-dev-server --hot --progress --colors",
+    "webpack-server": "webpack-dev-server --progress --colors --host 0.0.0.0",
     "web-server": "http-server -p 3000 ../../app/",
     "start": "npm run webpack-server & npm run web-server"
   },

@@ -2,3 +2,4 @@
 /servers/*/node_modules/*
 /servers/*/npm-debug.log*
 /servers/ruby/development.log
+/.vagrant
