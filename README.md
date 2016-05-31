@@ -11,12 +11,24 @@ git clone git@github.com:madmaniak/pro <your_project> -o pro
 
 git remote add origin git@github.com:<user>/<your_project>.git
 git push -u origin master
-
 ```
 
-Checkout the [servers](https://github.com/madmaniak/pro/tree/master/servers) subdirectories
-and add/remove if needed in the Procfile. Read there also about needed dependencies. Then just:
+#### Manual environment setup
 
+Checkout [servers](https://github.com/madmaniak/pro/tree/master/servers) subdirectories
+and read there about dependencies. It takes about 30 minutes to install all of them.
+
+#### Auto setup using Vagrant
+
+Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 or greater). If you've tried to install stuff manually make sure ther is no ```node_modules``` directory in ```servers/webpack``` and ```servers/primus```.
+
+```
+vagrant up
+vagrant ssh
+cd /vagrant
+```
+
+#### After setup
 ```
 foreman start
 ```
