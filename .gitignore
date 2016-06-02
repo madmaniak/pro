@@ -1,6 +1,6 @@
 nodes.conf
-servers/*/node_modules/*
-servers/*/npm-debug.log*
-servers/ruby/development.log
+tools/*/node_modules/*
+tools/*/npm-debug.log*
+tools/ruby/development.log
 .vagrant
 _site

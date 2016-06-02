@@ -22,7 +22,7 @@ cordova platform add browser
 ```
 # application is already running (foreman start)
 
-cd servers/cordova
+cd tools/cordova
 cordova run browser
 ```
 

@@ -15,12 +15,12 @@ git push -u origin master
 
 #### Manual environment setup
 
-Checkout [servers](https://github.com/madmaniak/pro/tree/master/servers) subdirectories
+Checkout [tools](https://github.com/madmaniak/pro/tree/master/tools) subdirectories
 and read there about dependencies. It takes about 30 minutes to install all of them.
 
 #### Auto setup using Vagrant
 
-Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 or greater). If you've tried to install stuff manually make sure there is no ```node_modules``` directory in ```servers/webpack``` and ```servers/primus```.
+Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 or greater). If you've tried to install stuff manually make sure there is no ```node_modules``` directory in ```tools/webpack``` and ```tools/primus```.
 
 ```
 vagrant up

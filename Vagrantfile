@@ -85,7 +85,7 @@ Vagrant.configure(2) do |config|
     export NVM_DIR="/home/vagrant/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-    cd /vagrant/servers/primus
+    cd /vagrant/tools/primus
     npm install --no-bin-links
     cd ../webpack
     npm install --no-bin-links

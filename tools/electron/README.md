@@ -13,7 +13,7 @@ npm install electron-prebuilt -g
 ```
 # application is already running (foreman start)
 
-cd servers/electron
+cd tools/electron
 electron .
 ```
 

@@ -10,14 +10,14 @@ npm install webpack -g
 ```
 
 ```
-cd servers/webpack
+cd tools/webpack
 npm install
 ```
 
 ## Procfile
 
 ```
-static-files: sh -c 'cd ./servers/webpack && exec npm start'
+static-files: sh -c 'cd ./tools/webpack && exec npm start'
 ```
 ## Documentation
 
