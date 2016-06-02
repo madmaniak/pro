@@ -21,6 +21,9 @@ get_jobs = ->
     else
       L.each jobs, (payload) ->
         data = payload[2]
+
+        console.log data
+
         sid = /"sid":"([^"]*)"/.exec(data)[1]
         if sid == 'all'
           primus.write data
