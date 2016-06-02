@@ -33,7 +33,7 @@ cd /vagrant
 foreman start
 ```
 
-Visit [http://localhost:3000](http://localhost:3000). Blank page means good.
+Visit [http://localhost:3000](http://localhost:3000).
 
 ### Upgrade Pro to the newest version
 

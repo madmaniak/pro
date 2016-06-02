@@ -1,8 +1,7 @@
 require './../app'
 
-def window.start
-	global:_app = #app
-	global.render
-
-def window.render
+def global.render
 	global:_app.render
+
+global:_app = #app
+global.render
