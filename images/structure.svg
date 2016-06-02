@@ -107,7 +107,7 @@
      pagecolor="#000000"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
      inkscape:cx="98.872148"
@@ -133,7 +133,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -180,7 +180,7 @@
                  x="635.1806"
                  y="768.2301"
                  style="text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1"
-                 id="tspan3759-3-6">servers</tspan></text>
+                 id="tspan3759-3-6">tools</tspan></text>
           </g>
           <g
              transform="translate(587.36149,-56.293872)"
@@ -214,7 +214,7 @@
              sodipodi:cy="162.63951"
              sodipodi:rx="182.83762"
              sodipodi:ry="134.85536"
-             d="m 380.32243,162.63951 a 182.83762,134.85536 0 1 1 -365.675228,0 182.83762,134.85536 0 1 1 365.675228,0 z"
+             d="m 380.32243,162.63951 c 0,74.47856 -81.85919,134.85536 -182.83761,134.85536 -100.978429,0 -182.837618,-60.3768 -182.837618,-134.85536 0,-74.478559 81.859189,-134.855361 182.837618,-134.855361 100.97842,0 182.83761,60.376802 182.83761,134.855361 z"
              transform="matrix(1.6485237,0,0,1.6485237,133.24686,159.54046)" />
           <path
              sodipodi:type="arc"
@@ -224,7 +224,7 @@
              sodipodi:cy="99.757515"
              sodipodi:rx="105.05586"
              sodipodi:ry="63.892147"
-             d="m 225.76909,99.757515 a 105.05586,63.892147 0 1 1 -210.111726,0 105.05586,63.892147 0 1 1 210.111726,0 z"
+             d="m 225.76909,99.757515 c 0,35.286655 -47.03511,63.892145 -105.05586,63.892145 -58.020754,0 -105.055866,-28.60549 -105.055866,-63.892145 0,-35.286659 47.035112,-63.892147 105.055866,-63.892147 58.02075,0 105.05586,28.605488 105.05586,63.892147 z"
              transform="matrix(1.6485237,0,0,1.6485237,199.1878,159.54046)" />
           <path
              style="fill:none;stroke:#eaeaea;stroke-width:1.00065389;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2.00130777,4.00261555;stroke-dashoffset:0"
