@@ -1,3 +1,14 @@
+L.mixin combine: (services...) ->
+  L.reduce L.union.apply(null, L.map(services, L.functions)), (object, method) ->
+    object[method] = ->
+      args = arguments
+      L.each services, (service) ->
+        service[method]?.apply(service, args)
+    object
+  , {}
+
+L.mixin reference: (object) -> [object.type, object.id]
+
 L.mixin toHash: (array) ->
   hash = hash_i = {}
   keys = L.take array, array.length - 2
@@ -10,7 +21,3 @@ L.mixin toHash: (array) ->
   hash_i[pair[0]] = pair[1]
 
   hash
-
-L.mixin mergeWithArrays: (object, values) ->
-  L.mergeWith object, values, (old_v, new_v) ->
-    old_v.concat(new_v) if L.isArray(old_v)

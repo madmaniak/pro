@@ -1,7 +1,6 @@
 Dialog =
 
   init: ->
-    global.Dispatcher = require("backbone-events-standalone")
     @primusI = Primus.connect 'http://localhost:8087'
     @primusO = Primus.connect 'http://localhost:8088'
     @pairConnections()
@@ -23,7 +22,7 @@ Dialog =
       if parsed_data.event
         Dispatcher.trigger parsed_data.event, parsed_data
       else
-        Store.update parsed_data
+        Store.patch parsed_data
 
   sendData: ->
     Dispatcher.send = (data) =>
