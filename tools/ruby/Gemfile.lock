@@ -28,6 +28,7 @@ DEPENDENCIES
   concurrent-ruby-ext
   connection_pool
   disque
+  pg
   semantic_logger
   sequel
   sequel_pg
