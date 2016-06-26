@@ -1,6 +1,19 @@
-require './data'
-Remote = require('./remote').Remote
-Render = require('./render').Render
+CurrentState = require './current_state'
+TmpIdsCheck  = require './tmp_ids_check'
+Remote       = require './remote'
+Local        = require './local'
+Render       = require './render'
 
-global.LocalStore = L.combine Data, Render
-global.Store = L.combine Remote, LocalStore
+global.Store = L.combine
+
+  collections: {}
+
+  get: (name, ids) ->
+    return [] unless name and ids
+    L.at @collections[name], ids
+
+  get_current: (object) -> @get(object.type, object.id)[0]
+
+  get_ref: (reference) -> @get.apply(@, reference)[0]
+
+, CurrentState, TmpIdsCheck, Remote, Local, Render
