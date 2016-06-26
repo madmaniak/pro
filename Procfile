@@ -6,3 +6,4 @@ ruby-1: sh -c 'cd ./tools/ruby && exec ruby entry.rb'
 ruby-2: sh -c 'cd ./tools/ruby && exec ruby entry.rb'
 ruby-3: sh -c 'cd ./tools/ruby && exec ruby entry.rb'
 ruby-4: sh -c 'cd ./tools/ruby && exec ruby entry.rb'
+adminer: php -S localhost:8000 -t tools/postgres/admin
