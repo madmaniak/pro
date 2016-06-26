@@ -1,3 +1,4 @@
+# find configs
 configs = Dir['**/*/config.yml*'].group_by { |config|
   config =~ /\.example$/ ? :example : :real
 }

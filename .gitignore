@@ -1,4 +1,5 @@
 nodes.conf
+config.yml
 tools/*/node_modules/*
 tools/*/npm-debug.log*
 tools/ruby/development.log

@@ -9,7 +9,7 @@ require_relative 'disque'
 require_relative 'custom'
 
 
-connect_disque = ->{ Disque.new(['127.0.0.1:7711']) }
+connect_disque = ->{ Disque.new(["#{ENV['disque_host']}:#{ENV['disque_port']}"]) }
 $dis = ConnectionPool.new(size: 8, timeout: 2) { connect_disque.call }
 dis = connect_disque.call
 
