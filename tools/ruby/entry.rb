@@ -1,7 +1,8 @@
-require 'rubygems'
 require 'bundler/setup'
 require 'connection_pool'
 
+require_relative '../postgres/db'
+require_relative '../starter/load_models'
 require_relative 'string'
 require_relative 'service'
 require_relative 'disque'
@@ -18,22 +19,18 @@ module Front::App; end
 module Front::Components; end
 module Front::Services; end
 
-DONT_LOAD_REGEXP = /migration/
+DONT_LOAD_REGEXP = /model\.rb/
 
-service_names = Dir['../../{app,components,services}/**/*.rb'].map{ |file|
+service_names = Dir['{app,components,services}/**/*.rb'].map{ |file|
   unless file =~ DONT_LOAD_REGEXP
-    require_relative file
-    "front/#{file[6...-3]}" # rm ../../ and .rb and add front/
+    require "./#{file}"
+    "front/#{file[0...-3]}" # rm .rb and add front/
   end
 }.compact
 
 services = service_names.reduce({}){ |h, name|
   service = name.camelize.constantize.new
   h[name] = service; h
-}
-
-Dir['../../{app,components,services}/**/migration'].map{ |migration|
-  require_relative migration
 }
 
 NAME = 0
