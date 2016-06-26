@@ -1,7 +1,9 @@
 require './../app'
 
-def global.render
-	global:_app.render
-
 global:_app = #app
+global:render =
+	L.throttle do
+		global:_app.render
+	, 17 # 60 fps
+
 global.render
