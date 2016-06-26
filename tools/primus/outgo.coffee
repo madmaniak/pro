@@ -28,7 +28,12 @@ get_jobs = ->
         if sid == 'all'
           primus.write data
         else
-          spark_id = connections[sid]
-          primus.spark(spark_id)?.write data
+          if /"broadcast":true/.exec(data)
+            L.each connections, (output_id, input_id) ->
+              if input_id != sid
+                primus.spark(output_id)?.write data
+          else
+            spark_id = connections[sid]
+            primus.spark(spark_id)?.write data
 
 get_jobs()
