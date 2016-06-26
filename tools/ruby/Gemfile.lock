@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (8.2.4)
     concurrent-ruby (1.0.1)
     concurrent-ruby-ext (1.0.1)
       concurrent-ruby (~> 1.0.1)
@@ -8,22 +9,28 @@ GEM
     disque (0.0.6)
       redic (~> 1.5.0)
     hiredis (0.6.1)
+    pg (0.18.4)
     redic (1.5.0)
       hiredis
-    require_all (1.3.3)
     semantic_logger (3.3.0)
       concurrent-ruby (~> 1.0)
+    sequel (4.33.0)
+    sequel_pg (1.6.17)
+      pg (>= 0.8.0)
+      sequel (>= 4.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   concurrent-ruby
   concurrent-ruby-ext
   connection_pool
   disque
-  require_all
   semantic_logger
+  sequel
+  sequel_pg
 
 BUNDLED WITH
    1.11.2

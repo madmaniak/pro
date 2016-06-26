@@ -1,7 +1,7 @@
 nodes.conf
 config.yml
+*.log*
 tools/*/node_modules/*
-tools/*/npm-debug.log*
-tools/ruby/development.log
+.byebug_history
 .vagrant
 _site
