@@ -19,7 +19,7 @@ Dialog =
     @primusO.on 'data', (data) ->
       console.log data
       parsed = JSON.parse(data)
-      Dispatcher.trigger parsed.event, parsed.data if parsed.event
+      Dispatcher.trigger parsed.event, parsed if parsed.event
       Store.patch parsed.data
 
   sendData: ->

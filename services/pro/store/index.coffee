@@ -1,3 +1,5 @@
+require './actions'
+
 CurrentState = require './current_state'
 TmpIdsCheck  = require './tmp_ids_check'
 Remote       = require './remote'
