@@ -4,10 +4,17 @@ module Front::Services::Pro
 
       def perform(data)
         function = data['transition'].gsub('/', '_')
-        $db[data['ref'][0].to_sym]
-          .where(id: data['ref'][1])
-          .update("data = #{function}('#{data['ref'].to_json}', '#{data['params'].to_json}')")
-        reply data.merge(broadcast: true)
+
+        model = $models[data['ref'][0].to_sym]
+
+        unless model.immutable
+          inc_v = data['v'] + 1
+          effect = model
+            .where(id: data['ref'][1], v: data['v'])
+            .update("data = #{function}('#{data['ref'].to_json}', '#{data['params'].to_json}'),
+                     v = #{inc_v}")
+          reply data.merge(broadcast: true, v: inc_v) unless effect.zero?
+        end
       end
 
     end
