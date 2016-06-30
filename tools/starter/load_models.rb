@@ -1,3 +1,14 @@
+module Sequel::Plugins::CustomModel
+  module ClassMethods
+    def immutable(*value)
+      return @immutable if value.empty?
+      @immutable = !!value.first
+    end
+  end
+end
+
+Sequel::Model.plugin :custom_model
+
 constants = Object.constants
 
 Dir['{app,components,services}/**/*/model.rb'].each do |model|

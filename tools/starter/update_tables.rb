@@ -3,10 +3,11 @@ module Sequel::Plugins::UpdateTable
     def update_table!
       unless db.table_exists? table_name
         puts "Creating #{table_name} table."
+        immut = immutable # pass immutable value to the block
         $db.create_table table_name do
           primary_key :id
-          Integer :version, default: 0
           column :data, :jsonb
+          Integer :v, default: 0 unless immut
         end
       end
     end

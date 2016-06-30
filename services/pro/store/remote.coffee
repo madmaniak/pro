@@ -16,7 +16,7 @@ module.exports =
       transition
       ref: L.reference(object)
       event: 'services/pro/store/update'
-      version: object.version
+      v: object.v
     }
     arguments
 

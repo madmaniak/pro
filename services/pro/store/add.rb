@@ -8,7 +8,7 @@ module Front::Services::Pro
         # insert
         id = $db[collection].insert \
           sql_relations(collection, data['relations']).merge \
-            data: Sequel.pg_jsonb(data['object'].reject{ |k,_| k == 'id' })
+            data: Sequel.pg_jsonb(data['object'].reject{ |k,_| ['id', 'type', 'v'].include? k })
 
         # broadcast
         reply broadcast: true, sid: data['sid'], data: { collection => {
