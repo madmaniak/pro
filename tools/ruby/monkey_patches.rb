@@ -1,6 +1,6 @@
 class String
   def camelize
-    split('/').map{ |word| word.capitalize}.join('::')
+    split('/').map{ |word| word.split('_').map(&:capitalize).join }.join('::')
   end
 
   def constantize

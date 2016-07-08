@@ -3,7 +3,7 @@ require 'connection_pool'
 
 require_relative '../postgres/db'
 require_relative '../starter/load_models'
-require_relative 'string'
+require_relative 'monkey_patches'
 require_relative 'service'
 require_relative 'disque'
 
