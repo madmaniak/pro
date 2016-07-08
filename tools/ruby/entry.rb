@@ -1,4 +1,3 @@
-require 'bundler/setup'
 require 'connection_pool'
 
 require_relative '../postgres/db'

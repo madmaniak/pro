@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require_relative 'configs_to_env'
 
 require_relative '../postgres/db'

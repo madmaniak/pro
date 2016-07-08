@@ -64,18 +64,21 @@ class Getter < Service
   end
 
   def perform(data)
-    base_scope = \
+    base_scope = self.class.base_scope(data)
+    base_sql = \
       if cursor = data['before']
+        base_scope.seek cursor.to_i, by_pk: true, back: true
       elsif cursor = data['after']
+        base_scope.seek cursor.to_i, by_pk: true
       elsif ids = data['ids']
-        ids
+        base_scope.limit(false).where id: ids.map(&:to_i)
       elsif page = data['page']
-        page
+        base_scope.offset base_scope.opts[:limit] * page.to_i
       else
-        self.class.base_scope(data) # the only one implemented
-      end
+        base_scope
+      end.sql
 
-    self.class.iterate base_scope.sql, data, results = Hash.new([])
+    self.class.iterate base_sql, data, results = Hash.new([])
     reply sid: data['sid'], data: results
   end
 
