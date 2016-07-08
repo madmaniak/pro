@@ -8,9 +8,6 @@ require_relative 'service'
 require_relative 'getter'
 require_relative 'disque'
 
-require_relative 'custom'
-
-
 connect_disque = ->{ Disque.new(["#{ENV['disque_host']}:#{ENV['disque_port']}"]) }
 $dis = ConnectionPool.new(size: 8, timeout: 2) { connect_disque.call }
 dis = connect_disque.call
@@ -22,12 +19,15 @@ module Front::Services; end
 
 DONT_LOAD_REGEXP = /model\.rb/
 
-service_names = Dir['{app,components,services}/**/*.rb'].map{ |file|
-  unless file =~ DONT_LOAD_REGEXP
-    require "./#{file}"
-    "front/#{file[0...-3]}" # rm .rb and add front/
-  end
-}.compact
+service_names = \
+  Dir['{app,components,services}/**/*.rb']
+    .sort_by{|path| -path.split("/").size }
+    .map{ |file|
+      unless file =~ DONT_LOAD_REGEXP
+        require "./#{file}"
+        "front/#{file[0...-3]}" # rm .rb and add front/
+      end
+    }.compact
 
 services = service_names.reduce({}){ |h, name|
   service = name.camelize.constantize.new
