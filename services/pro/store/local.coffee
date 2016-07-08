@@ -4,7 +4,8 @@ module.exports =
     L.each relations, (relation) ->
       relation[name] ||= []
       relation[name].push object.id
-    @patch L.toHash [name, object.id, object]
+    @collections[name] ||= {}
+    @collections[name][object.id] = object
 
   update: (object, transition, params) ->
     Actions[transition](object, params)

@@ -1,6 +1,5 @@
 require './actions'
 
-CurrentState = require './current_state'
 TmpIdsCheck  = require './tmp_ids_check'
 Remote       = require './remote'
 Local        = require './local'
@@ -14,8 +13,6 @@ global.Store = L.combine
     return [] unless name and ids
     L.at @collections[name], ids
 
-  get_current: (object) -> @get(object.type, object.id)[0]
-
   get_ref: (reference) -> @get.apply(@, reference)[0]
 
-, CurrentState, TmpIdsCheck, Remote, Local, Render
+, TmpIdsCheck, Remote, Local, Render
