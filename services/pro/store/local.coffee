@@ -14,4 +14,15 @@ module.exports =
     delete @collections[object.type][object.id]
 
   patch: (collections) ->
-    L.smartMerge @collections, collections
+    hashed_collections = # index by 'id' and add redundant 'type' to each object
+      L.reduce collections, (hash, objects, type) ->
+        hash[type] = collection = L.groupBy objects, 'id'
+        L.each collection, (objects, id) ->
+          collection[id] = L.reduce objects, (h, object) ->
+            object.type ||= type
+            L.smartMerge object, h
+          , {}
+        hash
+      , {}
+
+    L.smartMerge @collections, hashed_collections
