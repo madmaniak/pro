@@ -15,7 +15,7 @@ class Getter < Service
     end
 
     def iterate(sql, request, results)
-      result = $db.fetch(sql)
+      result = $db.fetch(sql).all
       return result if result.empty?
       @s[:relations].each do |name, getter|
         relation = model.association_reflections[name]
@@ -55,8 +55,6 @@ class Getter < Service
       @s[:scope].call(model, params)
     end
 
-    private
-
     def model
       @model ||= $models[@s[:base]]
     end
@@ -73,7 +71,7 @@ class Getter < Service
       elsif ids = data['ids']
         base_scope.limit(false).where id: ids.map(&:to_i)
       elsif page = data['page']
-        base_scope.offset base_scope.opts[:limit] * page.to_i
+        $db["select results.* from (#{base_scope.offset(base_scope.opts[:limit] * page.to_i).select(:id).sql}) ids join lateral (#{self.class.model.where('id = ids.id').sql}) results on true"]
       else
         base_scope
       end.sql
