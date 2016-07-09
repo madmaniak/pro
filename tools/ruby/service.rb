@@ -1,7 +1,7 @@
 require 'concurrent'
 require 'json'
-require 'semantic_logger'
 
+require 'semantic_logger'
 SemanticLogger.add_appender('development.log')
 SemanticLogger.default_level = :trace
 
@@ -43,3 +43,6 @@ class Service
   end
 
 end
+
+require_relative 'namespacer'
+def Service namespace, &block; Namespacer.from(namespace, Service, block); end

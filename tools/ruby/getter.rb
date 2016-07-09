@@ -81,3 +81,5 @@ class Getter < Service
   end
 
 end
+
+def Getter namespace, &block; Namespacer.from(namespace, Getter, block); end

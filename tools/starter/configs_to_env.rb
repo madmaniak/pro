@@ -33,4 +33,5 @@ merged_config = map.values.inject :merge
 
 # set env
 ENV['app'] = Dir.pwd.split('/').last
+ENV['root'] = Dir.pwd
 ENV.update merged_config
