@@ -28,6 +28,8 @@ end
 
 Sequel::Model.plugin :update_table
 
+require_relative 'helpers/load_models'
+
 $models.values.each do |model|
   model.update_table!
 end.each do |model|

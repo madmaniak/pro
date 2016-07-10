@@ -1,7 +1,8 @@
 require 'connection_pool'
 
 require_relative '../postgres/db'
-require_relative '../starter/load_models'
+require_relative '../starter/helpers/load_models'
+require_relative '../starter/helpers/paths_resolver'
 require_relative 'monkey_patches'
 require_relative 'service'
 require_relative 'getter'
@@ -16,17 +17,13 @@ module Front::App; end
 module Front::Components; end
 module Front::Services; end
 
-DONT_LOAD_REGEXP = /model\.rb/
-
 service_names = \
-  Dir['{app,components,services}/**/*.rb']
-    .sort_by{|path| -path.split("/").size }
-    .map{ |file|
-      unless file =~ DONT_LOAD_REGEXP
-        require "./#{file}"
-        "front/#{file[0...-3]}" # rm .rb and add front/
-      end
-    }.compact
+  PathsResolver.resolve(:rb, blacklist: [:model], sort: :leafs_first).map{ |file|
+    require "./#{file}"
+    "front/#{file[0...-3]}" # rm .rb and add front/
+  }
+
+PathsResolver.free
 
 services = service_names.reduce({}){ |h, name|
   service = name.camelize.constantize.new

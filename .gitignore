@@ -1,6 +1,7 @@
 nodes.conf
 config.yml
 *.log*
+services/pro/init_order.coffee
 tools/*/node_modules/*
 .byebug_history
 .vagrant
