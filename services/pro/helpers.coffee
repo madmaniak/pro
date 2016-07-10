@@ -4,6 +4,10 @@ L.mixin combine: (base, layers...) ->
     object
   , base
 
+# namespacer
+L.mixin ns: (path, action) ->
+  "#{path.split('/')[2...-1].join('/')}/#{action}"
+
 L.mixin pipe: (context, methods) ->
   ->
     result = arguments
