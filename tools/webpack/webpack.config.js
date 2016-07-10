@@ -32,7 +32,7 @@ module.exports = {
         ],
   	    include: paths
       },
-  	  { test: /\.imba/, loader: 'imba-loader', include: paths },
+  	  { test: /\.imba/, loader: 'imba/loader', include: paths },
   	  { test: /\.coffee/, loader: 'coffee-loader', include: paths }
     ]
   },
