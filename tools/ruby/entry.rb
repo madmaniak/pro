@@ -12,11 +12,6 @@ connect_disque = ->{ Disque.new(["#{ENV['disque_host']}:#{ENV['disque_port']}"])
 $dis = ConnectionPool.new(size: 8, timeout: 2) { connect_disque.call }
 dis = connect_disque.call
 
-module Front; end
-module Front::App; end
-module Front::Components; end
-module Front::Services; end
-
 service_names = \
   PathsResolver.resolve(:rb, blacklist: [:model], sort: :leafs_first).map{ |file|
     require "./#{file}"
