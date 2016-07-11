@@ -6,7 +6,7 @@ Service __FILE__ do
     # insert
     id = $db[collection].insert \
       sql_relations(collection, data['relations']).merge \
-        data: Sequel.pg_jsonb(data['object'].reject{ |k,_| ['id', 'type', 'v'].include? k })
+        data: Sequel.pg_jsonb(data['object'].reject{ |k,_| ['id', 'type'].include? k })
 
     # broadcast
     serialized = json_relations(collection, id, data['relations'])

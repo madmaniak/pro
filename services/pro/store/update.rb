@@ -1,11 +1,10 @@
 Service __FILE__ do
 
   def perform(data)
-    function = data['transition'].gsub('/', '_')
-
     model = $models[data['ref'][0].to_sym]
 
     unless model.immutable
+      function = data['transition'].gsub('/', '_')
       inc_v = data['v'] + 1
       effect = model
         .where(id: data['ref'][1], v: data['v'])
