@@ -9,9 +9,9 @@ Service __FILE__ do
         data: Sequel.pg_jsonb(data['object'].reject{ |k,_| ['id', 'type', 'v'].include? k })
 
     # broadcast
-    reply broadcast: true, sid: data['sid'], data: { collection => {
-      id => data['object'].merge('id' => id)
-    } }.merge( json_relations collection, id, data['relations'] )
+    serialized = json_relations(collection, id, data['relations'])
+    serialized[collection] += [ data['object'].reject{ |k| k == 'type' }.merge('id' => id) ]
+    reply broadcast: true, sid: data['sid'], data: serialized
 
     # fix tmp_id in origin client
     reply sid: data['sid'], event: :real_id,
@@ -33,8 +33,8 @@ Service __FILE__ do
   end
 
   def json_relations(collection, object_id, references)
-    references.inject({}) { |h, (type, id)|
-      h[type] = { id => { collection => [object_id] } }; h
+    references.inject(Hash.new([])) { |h, (type, id)|
+      h[type] += [{ id: id, collection => [object_id] }]; h
     }
   end
 
