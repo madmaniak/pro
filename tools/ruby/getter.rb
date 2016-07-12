@@ -65,9 +65,9 @@ class Getter < Service
     base_scope = self.class.base_scope(data)
     base_sql = \
       if cursor = data['before']
-        base_scope.seek cursor.to_i, by_pk: true, back: true
+        base_scope.seek cursor.to_i, by_pk: !id_order(base_scope), back: true
       elsif cursor = data['after']
-        base_scope.seek cursor.to_i, by_pk: true
+        base_scope.seek cursor.to_i, by_pk: !id_order(base_scope)
       elsif ids = data['ids']
         base_scope.limit(false).where id: ids.map(&:to_i)
       elsif page = data['page']
@@ -78,6 +78,13 @@ class Getter < Service
 
     self.class.iterate base_sql, data, results = Hash.new([])
     reply sid: data['sid'], data: results
+  end
+
+  private
+
+  def id_order(scope)
+    order = scope.opts[:order]
+    order.length == 1 and order[0].expression == :id
   end
 
 end
