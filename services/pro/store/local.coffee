@@ -9,6 +9,7 @@ module.exports =
 
   update: (object, transition, params) ->
     Actions[transition](object, params)
+    object.v = (object.v || 0) + 1
 
   delete: (object) ->
     delete @collections[object.type][object.id]

@@ -4,7 +4,7 @@ Service __FILE__ do
     collection = data['object']['type'].to_sym
 
     # insert
-    id = $db[collection].insert \
+    id = $models[collection].insert \
       sql_relations(collection, data['relations']).merge \
         data: Sequel.pg_jsonb(data['object'].reject{ |k,_| ['id', 'type'].include? k })
 
