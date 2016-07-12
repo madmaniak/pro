@@ -8,7 +8,7 @@ class Getter < Service
       @s = {
         base:  nil,                                                 # collection name
         scope: ->(ds, params) { ds.order(:id).reverse.limit(20) },  # set scope using Sequel
-        relations: {},                                              # hash of relations name => Getter
+        relations: [],                                              # relations (other Getters)
         fields: [],                                                 # fields to select from data
         params: []                                                  # relevant keys from request data
       }.merge(opts)
@@ -17,8 +17,8 @@ class Getter < Service
     def iterate(sql, request, results)
       result = $db.fetch(sql).all
       return result if result.empty?
-      @s[:relations].each do |name, getter|
-        relation = model.association_reflections[name]
+      @s[:relations].each do |getter|
+        relation = model.association_reflections[getter.s[:base]]
 
         relation_sql = \
           case relation[:type]
@@ -81,5 +81,3 @@ class Getter < Service
   end
 
 end
-
-def Getter namespace, &block; Namespacer.from(namespace, Getter, block); end

@@ -43,6 +43,3 @@ class Service
   end
 
 end
-
-require_relative 'namespacer'
-def Service namespace, &block; Namespacer.from(namespace, Service, block); end
