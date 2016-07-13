@@ -59,6 +59,16 @@ class Getter < Service
       @model ||= $models[@s[:base]]
     end
 
+    private
+
+    def j
+      @j ||= Sequel.expr(:data).pg_jsonb
+    end
+
+    def field(name)
+      j.get_text name
+    end
+
   end
 
   def perform(data)
