@@ -16,10 +16,12 @@ module Sequel::Plugins::UpdateTable
       schema = $db.schema(table_name).to_h
       association_reflections.each do |name, details|
         if key = details[:qualified_key] and not schema[key.column]
+          rel_table_name = Kernel.const_get(details[:class_name]).table_name
+
           puts "Adding #{name} key to #{table_name}"
-          $db.alter_table(table_name) do
-            add_foreign_key key.column, Kernel.const_get(details[:class_name]).table_name
-          end
+          $db.run "ALTER TABLE #{table_name}
+                   ADD COLUMN #{key.column} integer REFERENCES #{rel_table_name}
+                   ON DELETE CASCADE"
         end
       end
     end

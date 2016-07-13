@@ -1,9 +1,8 @@
 require './actions'
+require './local'
 
 TmpIdsCheck  = require './tmp_ids_check'
 Remote       = require './remote'
-Local        = require './local'
-Render       = require './render'
 
 global.Store = L.combine
 
@@ -15,4 +14,4 @@ global.Store = L.combine
 
   get_ref: (reference) -> @get.apply(@, reference)[0]
 
-, TmpIdsCheck, Remote, Local, Render
+, TmpIdsCheck, Remote, LocalStore

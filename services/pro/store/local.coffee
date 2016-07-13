@@ -1,18 +1,21 @@
-module.exports =
+global.LocalStore =
 
   add: (name, object, relations) ->
     L.each relations, (relation) ->
       relation[name] ||= []
       relation[name].push object.id
-    @collections[name] ||= {}
-    @collections[name][object.id] = object
+    Store.collections[name] ||= {}
+    Store.collections[name][object.id] = object
+    render()
 
   update: (object, transition, params) ->
     Actions[transition](object, params)
     object.v = (object.v || 0) + 1
+    render()
 
   delete: (object) ->
-    delete @collections[object.type][object.id]
+    delete Store.collections[object.type][object.id]
+    render()
 
   patch: (collections) ->
     hashed_collections = # index by 'id' and add redundant 'type' to each object
@@ -26,4 +29,5 @@ module.exports =
         hash
       , {}
 
-    L.smartMerge @collections, hashed_collections
+    L.smartMerge Store.collections, hashed_collections
+    render()

@@ -35,4 +35,5 @@ Dispatcher.on 'real_id', (data) ->
   object.id = change.id
   # store object with real id
   Store.collections[change.collection][change.id] = object
+  delete Store.collections[change.collection][change.tmp_id]
   Dispatcher.trigger "#{change.tmp_id}_to_id"
