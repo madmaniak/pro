@@ -1,4 +1,4 @@
 require './dispatcher'
 require './helpers'
-require './dialog'
+require './requests'
 require './store'

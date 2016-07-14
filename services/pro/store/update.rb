@@ -11,7 +11,7 @@ Service __FILE__ do
         .where(id: data['ref'][1], v: data['v'])
         .update("data = #{function}('#{data['ref'].to_json}', '#{data['params'].to_json}'),
                  v = #{inc_v}")
-      reply data.merge(broadcast: true, 'v' => inc_v) unless effect.zero?
+      broadcast data.merge 'v' => inc_v unless effect.zero?
     end
   end
 

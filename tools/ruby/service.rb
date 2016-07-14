@@ -34,12 +34,20 @@ class Service
   def perform(data)
   end
 
-  def reply(data)
+  def send(data)
     $dis.with do |dis|
       dis.que :addjob,
         :send, prepare_send(data), 60,
         :replicate, 1, :retry, 0, :ttl, 2
     end
+  end
+
+  def reply(data, payload)
+    send payload.merge(sid: data['sid'], r: data['r'])
+  end
+
+  def broadcast(data, payload = nil)
+    send (payload || data).merge('sid' => data['sid'], broadcast: true).reject{ |k| k == 'r' }
   end
 
 end

@@ -11,10 +11,10 @@ Service __FILE__ do
     # broadcast
     serialized = json_relations(collection, id, data['relations'])
     serialized[collection] += [ data['object'].reject{ |k| k == 'type' }.merge('id' => id) ]
-    reply broadcast: true, sid: data['sid'], data: serialized
+    broadcast data, data: serialized
 
     # fix tmp_id in origin client
-    reply sid: data['sid'], event: :real_id,
+    reply data,
       change: {
         collection: collection,
         tmp_id: data['object']['id'],

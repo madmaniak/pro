@@ -87,7 +87,7 @@ class Getter < Service
       end.sql
 
     self.class.iterate base_sql, data, results = Hash.new([])
-    reply sid: data['sid'], data: results
+    reply data, data: results
   end
 
   private
