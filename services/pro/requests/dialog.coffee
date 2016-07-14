@@ -1,11 +1,10 @@
-Dialog =
+global.Dialog =
 
   init: ->
     @primusI = Primus.connect 'http://localhost:8087'
     @primusO = Primus.connect 'http://localhost:8088'
     @pairConnections()
     @listenToData()
-    @sendData()
 
   pairConnections: ->
     @_get_id()
@@ -19,12 +18,12 @@ Dialog =
     @primusO.on 'data', (data) ->
       console.log data
       parsed = JSON.parse(data)
+      Requests.reply(parsed) if parsed.r
       Dispatcher.trigger parsed.event, parsed if parsed.event
-      Store.patch parsed.data
+      Store.patch parsed.data if parsed.data
 
-  sendData: ->
-    Dispatcher.send = (data) =>
-      console.log data
-      @primusI.write data
+  send: (data) ->
+    console.log data
+    @primusI.write data
 
 Dialog.init()
