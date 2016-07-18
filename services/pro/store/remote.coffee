@@ -3,7 +3,7 @@ module.exports =
     object['id'] = L.uniqueId("tmp")
     object['type'] = name
 
-    Dispatcher.once Requests.perform(L.ns(__filename, 'add'),
+    Dispatcher.once Requests.perform(L.ns(__dirname, 'add'),
       object: L.assign {}, object
       relations: L.map(relations, L.reference)
     ), (data) ->
@@ -18,7 +18,7 @@ module.exports =
     arguments
 
   update: (object, transition, params) ->
-    Requests.perform L.ns(__filename, 'update'), {
+    Requests.perform L.ns(__dirname, 'update'), {
       params
       transition
       ref: L.reference(object)
@@ -27,5 +27,5 @@ module.exports =
     arguments
 
   delete: (object) ->
-    Requests.perform L.ns(__filename, 'delete'), ref: L.reference(object)
+    Requests.perform L.ns(__dirname, 'delete'), ref: L.reference(object)
     arguments

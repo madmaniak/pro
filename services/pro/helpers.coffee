@@ -6,7 +6,7 @@ L.mixin combine: (base, layers...) ->
 
 # namespacer
 L.mixin ns: (path, action) ->
-  "#{path.split('/')[2...-1].join('/')}/#{action}"
+  "#{path[6..-1]}/#{action}"
 
 L.mixin pipe: (context, methods) ->
   ->

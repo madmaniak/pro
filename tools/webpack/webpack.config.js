@@ -8,7 +8,7 @@ module.exports = {
   context: __dirname,
   entry: '../../services/pro/init_order',
   node: {
-    __filename: true
+    __dirname: true
   },
   output: {
      publicPath: 'http://localhost:8080/',
