@@ -4,7 +4,7 @@ require './local'
 TmpIdsCheck  = require './tmp_ids_check'
 Remote       = require './remote'
 
-global.Store = L.combine
+global.Store = L.compose
 
   collections: {}
 

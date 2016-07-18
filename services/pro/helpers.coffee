@@ -1,4 +1,4 @@
-L.mixin combine: (base, layers...) ->
+L.mixin compose: (base, layers...) ->
   L.reduce L.uniq(L.flatten(L.map(layers, L.functions))), (object, method) ->
     object[method] = L.pipe base, L.compact L.map( layers, method )
     object
