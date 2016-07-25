@@ -6,12 +6,12 @@ require_relative 'create_db'
 require_relative 'update_tables'
 require_relative 'update_actions'
 
-require_relative 'frontend_init'
+require_relative '../ruby/helpers/monkey_patches'
+require_relative '../ruby/helpers/load_services'
 
 if ARGV.include? 'c'
-  require_relative '../ruby/helpers/monkey_patches'
-  require_relative '../ruby/helpers/load_services'
   require_relative '../ruby/console'
 else
+  require_relative 'frontend_init'
   exec 'foreman start'
 end

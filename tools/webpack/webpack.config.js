@@ -6,7 +6,7 @@ const paths = [
 ];
 module.exports = {
   context: __dirname,
-  entry: '../../services/pro/init_order',
+  entry: '../../services/pro/init',
   node: {
     __dirname: true
   },
