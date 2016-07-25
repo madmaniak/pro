@@ -11,3 +11,5 @@ db_link = \
 
 $db = Sequel.connect "postgres://#{db_link}"
 $db.loggers << Logger.new($stdout)
+$db.extension(:pg_streaming)
+$db.stream_all_queries = true

@@ -1,5 +1,7 @@
 require 'concurrent'
-require 'json'
+
+require 'oj'
+Oj.default_options = { symbol_keys: true, mode: :compat }
 
 require 'semantic_logger'
 SemanticLogger.add_appender('development.log')
@@ -24,11 +26,11 @@ class Service
   private
 
   def prepare(message)
-    JSON.parse(message)
+    Oj.load message
   end
 
   def prepare_send(message)
-    JSON.fast_unparse(message)
+    Oj.dump message
   end
 
   def perform(data)
@@ -43,11 +45,11 @@ class Service
   end
 
   def reply(data, payload)
-    send payload.merge(sid: data['sid'], r: data['r'])
+    send payload.merge(sid: data[:sid], r: data[:r])
   end
 
   def broadcast(data, payload = nil)
-    send (payload || data).merge('sid' => data['sid'], broadcast: true).reject{ |k| k == 'r' }
+    send (payload || data).merge(sid: data[:sid], broadcast: true).reject{ |k| k == :r }
   end
 
 end

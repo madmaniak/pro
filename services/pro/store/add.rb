@@ -1,23 +1,24 @@
 Service __FILE__ do
 
   def perform(data)
-    collection = data['object']['type'].to_sym
+    collection = data[:object][:type].to_sym
 
     # insert
     id = $models[collection].insert \
-      sql_relations(collection, data['relations']).merge \
-        data: Sequel.pg_jsonb(data['object'].reject{ |k,_| ['id', 'type'].include? k })
+      sql_relations(collection, data[:relations]).merge \
+        data: Sequel.pg_jsonb(data[:object].reject{ |k,_| [:id, :type].include? k })
 
     # broadcast
-    serialized = json_relations(collection, id, data['relations'])
-    serialized[collection] += [ data['object'].reject{ |k| k == 'type' }.merge('id' => id) ]
+    serialized = {}
+    serialized[collection] = [ data[:object].reject{ |k| k == :type }.merge!(id: id) ]
+    serialized.merge! json_relations(collection, id, data[:relations])
     broadcast data, data: serialized
 
     # fix tmp_id in origin client
     reply data,
       change: {
         collection: collection,
-        tmp_id: data['object']['id'],
+        tmp_id: data[:object][:id],
         id: id
       }
   end
@@ -26,9 +27,11 @@ Service __FILE__ do
 
   def sql_relations(collection, references)
     references.inject({}) { |h, (type, id)|
-      foreign_key = \
-        $models[type.to_sym].association_reflections[collection][:key]
-      h[foreign_key] = id; h
+      if model = $models[type.to_sym]
+        foreign_key = model.association_reflections[collection][:key]
+        h[foreign_key] = id
+      end
+      h
     }
   end
 
