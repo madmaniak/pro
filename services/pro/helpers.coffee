@@ -20,6 +20,14 @@ L.mixin pipe: (context, methods) ->
 
 L.mixin reference: (object) -> [object.type, object.id]
 
-L.mixin smartMerge: (object, values) ->
-  L.mergeWith object, values, (old_v, new_v) ->
-    L.union old_v, new_v if L.isArray(old_v)
+L.mixin stringify: (hash) ->
+    L.reduce(hash, (array, k,v) ->
+      array.push "#{k}#{v}"
+      array
+    , []).sort().join()
+
+L.mixin tmp_id: (object) -> /tmp/.exec object.id
+
+L.mixin wait_for_real_id: (objects, action) ->
+  !if object = L.find objects, L.tmp_id
+    Dispatcher.once "#{object.id}_to_id", action

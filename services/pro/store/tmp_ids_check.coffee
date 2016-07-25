@@ -1,12 +1,6 @@
 H =
-  tmp_id: (object) -> /tmp/.exec object.id
-
-  wait_for_real_id: (objects, action) ->
-    !if object = L.find objects, H.tmp_id
-      Dispatcher.once "#{object.id}_to_id", action
-
-  all: (object, action, args) ->
-    H.wait_for_real_id object, -> action.apply(null, args)
+  all: (objects, action, args) ->
+    L.wait_for_real_id objects, -> action.apply(null, args)
 
 module.exports =
   add: (name, object, relations) ->

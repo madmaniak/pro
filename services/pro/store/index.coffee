@@ -10,7 +10,7 @@ global.Store = L.compose
 
   get: (name, ids) ->
     return [] unless name and ids
-    L.at @collections[name], ids
+    L.compact L.at(@collections[name], ids)
 
   get_ref: (reference) -> @get.apply(@, reference)[0]
 

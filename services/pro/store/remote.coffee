@@ -10,11 +10,12 @@ module.exports =
       change = data.change
       # find object with tmp_id
       object = Store.get(change.collection, change.tmp_id)[0]
+      old_id = object.id
       object.id = change.id
       # store object with real id
       Store.collections[change.collection][change.id] = object
       delete Store.collections[change.collection][change.tmp_id]
-      Dispatcher.trigger "#{change.tmp_id}_to_id"
+      Dispatcher.trigger "#{change.tmp_id}_to_id", old_id, object.id
     arguments
 
   update: (object, transition, params) ->

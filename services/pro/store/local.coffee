@@ -1,33 +1,32 @@
 global.LocalStore =
 
   add: (name, object, relations) ->
-    L.each relations, (relation) ->
-      relation[name] ||= []
-      relation[name].push object.id
     Store.collections[name] ||= {}
     Store.collections[name][object.id] = object
-    render()
+    L.each relations, (relation) ->
+      relation[name].add(object.id)
 
   update: (object, transition, params) ->
     Actions[transition](object, params)
     object.v = (object.v || 0) + 1
+    @_change(object)
     render()
 
   delete: (object) ->
     delete Store.collections[object.type][object.id]
+    @_change(object)
     render()
 
   patch: (collections) ->
-    hashed_collections = # index by 'id' and add redundant 'type' to each object
-      L.reduce collections, (hash, objects, type) ->
-        hash[type] = collection = L.groupBy objects, 'id'
-        L.each collection, (objects, id) ->
-          collection[id] = L.reduce objects, (h, object) ->
-            object.type ||= type
-            L.smartMerge object, h
-          , {}
-        hash
-      , {}
+    L.each collections, (objects, type) ->
+      collection = Store.collections[type] ||= {}
+      L.each objects, (object) ->
+        object.type ||= type
+        L.mergeWith (collection[object.id] ||= {}), object, (prev, next) ->
+          if prev and L.isArray(next)
+            L.each next, (n) -> prev.add(n)
+            prev
 
-    L.smartMerge Store.collections, hashed_collections
-    render()
+  _change: (object) ->
+    Dispatcher.trigger "#{object.type}_change", object.id
+
