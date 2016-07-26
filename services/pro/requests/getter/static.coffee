@@ -4,23 +4,21 @@ class Getter.Static extends Getter
     super
     @key_values = L.map @constructor.order, 0
 
-  load: ->     @go {}, (scope) => @v++; @scope = [scope]
-  more: ->     @go ids: @all()
-  page: (i) -> @go page: i, (scope) => @v++; @scope[i] = scope
+  load: ->     @go {}, (scope) => @scope = scope
+  more: ->     @go ids: @scope
+  page: (i, params = {}) ->
+    new @constructor undefined, L.merge(params, page: i), @belongs_to
 
-  prev: (page) ->
-    if key = @_get_key L.first(@scope[page] || @all())
-      @go before: key, (scope) =>
-        @_splice @scope, (page-1) || 0, !!page, L.reverse(scope)
+  prev: ->
+    key = @_get_key L.first(@scope)
+    @go before: key, (scope) => @scope = L.reverse(scope).concat @scope
 
-  next: (page) ->
-    if key = @_get_key L.last(@scope[page] || @all())
-      @go after: key, (scope) =>
-        @_splice @scope, (page+1) || @scope.length, !!page, scope
+  next: ->
+    key = @_get_key L.last(@scope)
+    @go after: key, (scope) => @scope = @scope.concat scope
 
   _get_key: (id) ->
-    object = Store.get(@constructor.base, id)[0]
-    key = []
+    object = @_object(id); key = []
     for attr in @key_values
       if v = object[attr] then key.push(v) else return id
     key

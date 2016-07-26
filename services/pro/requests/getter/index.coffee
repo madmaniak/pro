@@ -2,8 +2,7 @@ class global.Getter
 
   @list: {}
 
-  constructor: (@scope = [[]], @params = {}, @belongs_to) ->
-    @v = 0
+  constructor: (@scope = [], @params = {}, @belongs_to) ->
     Dispatcher.on "#{@constructor.base}_change", @change
     unless @belongs_to
     # root in Store
@@ -11,46 +10,35 @@ class global.Getter
       @belongs_to[@constructor.base] = @
       Store.collections[@constructor.path] = 1: @belongs_to
 
-  all: ->
-    if @_v != @v
-      @_v = @v
-      @_all = L.reduce @scope, (collection, page) ->
-        if page then collection.concat(page) else collection
-      , []
-    else @_all
-
   collection: ->
-    if @_v2 != @v
-    then @_v2 = @v; @_collection = Store.get @constructor.base, @all()
-    else @_collection
+    Store.get @constructor.base, @scope
 
-  create: (object) ->
-    Store.add @constructor.base, object, [@belongs_to]
+  create: (object, relations = []) ->
+    Store.add @constructor.base, object, relations.concat @belongs_to
     render()
 
   add: (id) ->
-    console.log id
-    L.last(@scope).push(id); @v++
-    i = @reorder(@all().length - 1)
+    @scope.push(id)
+    i = @reorder(@scope.length - 1)
     L.wait_for_real_id [{id: id}], (old_id, new_id) =>
-      if @all()[i] != old_id
-        i = L.indexOf(@all(), old_id)
-      @_find_and_splice(i, true, new_id)
+      if @scope[i] != old_id
+        i = L.indexOf(@scope, old_id)
+      @scope.splice(i, true, new_id)
     @_create_relations(id)
 
   _create_relations: (id) ->
-    object = Store.get(@constructor.base, id)[0]
+    object = @_object(id)
     L.each @constructor.relations, (ns, relation) ->
       if !object[relation] or L.isArray object[relation]
         object[relation] = new Getter.list[ns](object[relation], {}, object)
 
   change: (id) =>
-    if (i = L.indexOf(@all(), id)) != -1
+    if (i = L.indexOf(@scope, id)) != -1
     # id in scope?
       # still exists?
-      if Store.get(@constructor.base, id)[0]
+      if @_object(id)
       then @reorder(i)
-      else @_find_and_splice(i)
+      else @scope.splice(i)
 
   reorder: (i) ->
     c = @collection()
@@ -59,8 +47,8 @@ class global.Getter
       split = i + direction
       destination =
         if direction < 0
-        then @_new_index(c[0..split], c[i])
-        else i + @_new_index(c[split..-1], c[i])
+        then @proper_index(c[i], c, 0, split-1)
+        else i + @proper_index(c[i], c, split)
       @move i, destination
     destination || i
 
@@ -71,25 +59,7 @@ class global.Getter
     else 0
 
   move: (from, to) ->
-    value = @_find_and_splice(from)[0]
-    @_find_and_splice(to, false, value)
-
-  _find_and_splice: (i, rm, value) ->
-    [page, index] = @_i(i)
-    @_splice @scope[page], index, rm, value
-
-  _splice: (collection, i, rm = true, value) ->
-    @v++
-    if value
-    then collection.splice(i, rm, value)
-    else collection.splice(i, rm)
-
-  # returns page number and partial index
-  _i: (i) ->
-    for page, j in @scope
-      if i >= page.length and j < @scope.length - 1
-        i -= page.length
-      else return [j, i]
+    @scope.splice to, 0, @scope.splice(from, 1)[0]
 
   # is a > b considering [attribute, boolean:descending]?
   compare: (a, b) ->
@@ -99,9 +69,10 @@ class global.Getter
     false
 
   # binary search for proper index
-  _new_index: (collection, object) ->
-    l = 0
-    r = collection.length - 1
+  proper_index: (object, collection, left, right) ->
+    collection ||= @collection()
+    l = left   ||  0
+    r = right  ||  collection.length - 1
     m = H.half_way(l, r)
     while true
       return l   if @compare(collection[l], object)
@@ -110,6 +81,8 @@ class global.Getter
       then r = m - 1
       else l = m + 1
       m = H.half_way(l, r)
+
+  _object: (id) -> Store.get(@constructor.base, id)[0]
 
 H =
   half_way: (l, r) ->
