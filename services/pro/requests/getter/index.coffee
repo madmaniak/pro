@@ -20,10 +20,11 @@ class global.Getter
   add: (id) ->
     @scope.push(id)
     i = @reorder(@scope.length - 1)
-    L.wait_for_real_id [{id: id}], (old_id, new_id) =>
-      if @scope[i] != old_id
-        i = L.indexOf(@scope, old_id)
-      @scope.splice(i, true, new_id)
+    object = @_object(id)
+    L.wait_for_real_id object, =>
+      if @scope[i] != id
+        i = @index_of(object, id)
+      @scope.splice(i, true, object.id)
     @_create_relations(id)
 
   _create_relations: (id) ->
@@ -33,10 +34,10 @@ class global.Getter
         object[relation] = new Getter.list[ns](object[relation], {}, object)
 
   change: (id) =>
-    if (i = L.indexOf(@scope, id)) != -1
-    # id in scope?
-      # still exists?
-      if @_object(id)
+    if object = @_object(id)
+    # still exists?
+      # id in scope?
+      if (i = @index_of(object, id)) != -1
       then @reorder(i)
       else @scope.splice(i)
 
@@ -61,12 +62,12 @@ class global.Getter
   move: (from, to) ->
     @scope.splice to, 0, @scope.splice(from, 1)[0]
 
-  # is a > b considering [attribute, boolean:descending]?
+  # is a >= b considering [attribute, boolean:descending]?
   compare: (a, b) ->
     for order in @constructor.order
       return !order[1] if a[order[0]] > b[order[0]]
       return  order[1] if a[order[0]] < b[order[0]]
-    false
+    true
 
   # binary search for proper index
   proper_index: (object, collection, left, right) ->
@@ -81,6 +82,18 @@ class global.Getter
       then r = m - 1
       else l = m + 1
       m = H.half_way(l, r)
+
+  index_of: (object, id) ->
+    i = @proper_index object
+    return i if @scope[i] == id
+    j = 1
+    while (i2 = i+j) < @scope.length
+      return i2 if @scope[i2] == id or @scope[i-j] == id
+      j++
+    while (i2 = i-j) >= 0
+      return i2 if @scope[i2] == id
+      j++
+    -1
 
   _object: (id) -> Store.get(@constructor.base, id)[0]
 

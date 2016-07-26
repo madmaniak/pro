@@ -29,4 +29,3 @@ global.LocalStore =
 
   _change: (object) ->
     Dispatcher.trigger "#{object.type}_change", object.id
-

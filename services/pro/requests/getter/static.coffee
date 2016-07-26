@@ -30,7 +30,7 @@ class Getter.Static extends Getter
 
     Dispatcher.once Requests.perform(@constructor.path, query), (reply) =>
       # Cache.set rk, reply.raw
-      scope_f?(reply.scope)
+      scope_f?.call(@, reply.scope)
       if @constructor.relations
         L.each Store.get(@constructor.base, reply.scope), (object) =>
           @_create_relations(object.id)
