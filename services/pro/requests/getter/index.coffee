@@ -21,7 +21,7 @@ class global.Getter
     @scope.push(id)
     i = @reorder(@scope.length - 1)
     object = @_object(id)
-    L.wait_for_real_id object, =>
+    L.wait_for_real_id [object], =>
       if @scope[i] != id
         i = @index_of(object, id)
       @scope.splice(i, true, object.id)
