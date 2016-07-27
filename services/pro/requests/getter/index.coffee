@@ -67,6 +67,8 @@ class global.Getter
     for order in @constructor.order
       return !order[1] if a[order[0]] > b[order[0]]
       return  order[1] if a[order[0]] < b[order[0]]
+      return !order[1] if L.isString(a[order[0]]) && L.isInteger(b[order[0]])
+      return  order[1] if L.isString(b[order[0]]) && L.isInteger(a[order[0]])
     true
 
   # binary search for proper index
