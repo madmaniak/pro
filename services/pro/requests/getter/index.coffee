@@ -3,6 +3,7 @@ class global.Getter
   @list: {}
 
   constructor: (@scope = [], @params = {}, @belongs_to) ->
+    @v = 0
     Dispatcher.on "#{@constructor.base}_change", @change
     unless @belongs_to
     # root in Store
@@ -11,20 +12,22 @@ class global.Getter
       Store.collections[@constructor.path] = 1: @belongs_to
 
   collection: ->
-    Store.get @constructor.base, @scope
+    if @_v == @v
+    then @_collection
+    else @_v = @v; @_collection = Store.get @constructor.base, @scope
 
   create: (object, relations = []) ->
     Store.add @constructor.base, object, relations.concat @belongs_to
     render()
 
   add: (id) ->
-    @scope.push(id)
+    @scope.push(id); @v++
     i = @reorder(@scope.length - 1)
     object = @_object(id)
     L.wait_for_real_id [object], =>
       if @scope[i] != id
         i = @index_of(object, id)
-      @scope.splice(i, true, object.id)
+      @scope.splice(i, true, object.id); @v++
     @_create_relations(id)
 
   _create_relations: (id) ->
@@ -37,9 +40,9 @@ class global.Getter
     if object = @_object(id)
     # still exists?
       # id in scope?
-      if (i = @index_of(object, id)) != -1
+      if (i = @index_of(object)) != -1
       then @reorder(i)
-      else @scope.splice(i)
+      else @scope.splice(i); @v++
 
   reorder: (i) ->
     c = @collection()
@@ -60,7 +63,7 @@ class global.Getter
     else 0
 
   move: (from, to) ->
-    @scope.splice to, 0, @scope.splice(from, 1)[0]
+    @scope.splice to, 0, @scope.splice(from, 1)[0]; @v++
 
   # is a >= b considering [attribute, boolean:descending]?
   compare: (a, b) ->
@@ -85,7 +88,7 @@ class global.Getter
       else l = m + 1
       m = H.half_way(l, r)
 
-  index_of: (object, id) ->
+  index_of: (object, id = object.id) ->
     i = @proper_index object
     return i if @scope[i] == id
     j = 1
