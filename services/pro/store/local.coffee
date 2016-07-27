@@ -4,7 +4,7 @@ global.LocalStore =
     Store.collections[name] ||= {}
     Store.collections[name][object.id] = object
     L.each relations, (relation) ->
-      relation[name].add(object.id)
+      relation[name].add_id(object.id)
 
   update: (object, transition, params) ->
     Actions[transition](object, params)
@@ -24,7 +24,7 @@ global.LocalStore =
         object.type ||= type
         L.mergeWith (collection[object.id] ||= {}), object, (prev, next) ->
           if prev and L.isArray(next)
-            L.each next, (n) -> prev.add(n)
+            L.each next, (n) -> prev.add_id(n)
             prev
 
   _change: (object) ->

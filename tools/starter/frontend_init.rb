@@ -24,11 +24,11 @@ def getter_class(ns, getter, order_by)
   }
   relations = "\n  @relations: {#{r.join(",")}}" if r.any?
 
-  "class @['G'] extends Getter#{extension}
+  "class @['C'] extends Collection#{extension}
   @path: '#{ns}'
   @base: '#{getter.s[:base]}'
   @order: #{order_by}#{relations}
-Getter.list['#{ns}'] = @['G']"
+Collection.list['#{ns}'] = @['C']"
 end
 
 def read_order(order)

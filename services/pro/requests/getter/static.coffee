@@ -1,4 +1,4 @@
-class Getter.Static extends Getter
+class Collection.Static extends Collection
 
   constructor: ->
     super
@@ -35,3 +35,4 @@ class Getter.Static extends Getter
         L.each Store.get(@constructor.base, reply.scope), (object) =>
           @_create_relations(object.id)
       @done = true
+    @

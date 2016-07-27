@@ -1,4 +1,4 @@
-class global.Getter
+class global.Collection
 
   @list: {}
 
@@ -11,16 +11,16 @@ class global.Getter
       @belongs_to[@constructor.base] = @
       Store.collections[@constructor.path] = 1: @belongs_to
 
-  collection: ->
+  elements: ->
     if @_v == @v
     then @_collection
     else @_v = @v; @_collection = Store.get @constructor.base, @scope
 
-  create: (object, relations = []) ->
+  add: (object, relations = []) ->
     Store.add @constructor.base, object, relations.concat @belongs_to
     render()
 
-  add: (id) ->
+  add_id: (id) ->
     @scope.push(id); @v++
     i = @reorder(@scope.length - 1)
     object = @_object(id)
@@ -34,7 +34,7 @@ class global.Getter
     object = @_object(id)
     L.each @constructor.relations, (ns, relation) ->
       if !object[relation] or L.isArray object[relation]
-        object[relation] = new Getter.list[ns](object[relation], {}, object)
+        object[relation] = new Collection.list[ns](object[relation], {}, object)
 
   change: (id) =>
     if object = @_object(id)
@@ -45,7 +45,7 @@ class global.Getter
       else @scope.splice(i); @v++
 
   reorder: (i) ->
-    c = @collection()
+    c = @elements()
     if direction = @_direction c[i-1], c[i], c[i+1]
     # wrong order?
       split = i + direction
@@ -76,7 +76,7 @@ class global.Getter
 
   # binary search for proper index
   proper_index: (object, collection, left, right) ->
-    collection ||= @collection()
+    collection ||= @elements()
     l = left   ||  0
     r = right  ||  collection.length - 1
     m = H.half_way(l, r)

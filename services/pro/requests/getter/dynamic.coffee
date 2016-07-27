@@ -1,4 +1,4 @@
-class Getter.Dynamic extends Getter.Static
+class Collection.Dynamic extends Collection.Static
 
   prev: ->
     if @dynamic_prev
@@ -11,7 +11,7 @@ class Getter.Dynamic extends Getter.Static
     else super
 
   dynamic: (scope) ->
-    L.each scope, (id) => @add(id)
+    L.each scope, (id) => @add_id(id)
     @_dynamic_flags(scope)
 
   _dynamic_flags: (scope) ->
@@ -20,7 +20,7 @@ class Getter.Dynamic extends Getter.Static
 
   reorder: (i) ->
     i = super(i)
-    if i == @collection().length - 1
+    if i == @elements().length - 1
       @dynamic_next = true
     else if i == 0
       @dynamic_prev = true
