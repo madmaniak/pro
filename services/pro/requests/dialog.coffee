@@ -7,12 +7,9 @@ global.Dialog =
     @listen_to_data()
 
   pair_connections: ->
-    @_get_id()
-    @primusO.on 'open', =>
-      @primusO.write @_get_id()
-
-  _get_id: ->
-    @id || @primusI.id (id) => @id = id
+    @primusI.on 'open', =>
+      @primusI.id (id) =>
+        @primusO.write id
 
   listen_to_data: ->
     @primusO.on 'data', (data) ->

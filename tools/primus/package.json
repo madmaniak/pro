@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.13.1",
     "binary-pack": "^1.0.2",
-    "engine.io": "^1.6.8",
-    "primus": "^5.1.0",
+    "lodash": "^4.14.0",
+    "primus": "primus/primus",
     "thunk-disque": "^0.5.3",
-    "thunk-redis": "^1.5.5"
+    "thunk-redis": "^1.5.5",
+    "uws": "^0.7.9"
   }
 }
