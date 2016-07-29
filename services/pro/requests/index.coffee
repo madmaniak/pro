@@ -1,6 +1,6 @@
 require './dialog'
 require './cache'
-require './getter'
+require './collection'
 
 global.Requests =
 
