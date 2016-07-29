@@ -10,6 +10,7 @@ global.Dialog =
     @primusI.on 'open', =>
       @primusI.id (id) =>
         @primusO.write id
+        render()
 
   listen_to_data: ->
     @primusO.on 'data', (data) ->
