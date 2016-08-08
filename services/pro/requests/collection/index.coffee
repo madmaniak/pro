@@ -42,7 +42,12 @@ class global.Collection
       # id in scope?
       if (i = @index_of(object)) != -1
       then @reorder(i)
-      else @scope.splice(i); @v++
+      else @scope.splice(i, 1); @v++
+    else
+    # don't exist at all?
+      # was in scope?
+      if (i = L.indexOf(@scope, id)) != -1
+        @scope.splice(i, 1); @v++
 
   reorder: (i) ->
     c = @elements()
