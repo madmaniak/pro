@@ -1,12 +1,12 @@
 const path = require('path');
 const paths = [
-  path.resolve(__dirname, '..', '..', "app"),
-  path.resolve(__dirname, '..', '..', "components"),
-  path.resolve(__dirname, '..', '..', "services")
+  path.resolve(__dirname, '..', '..', '..', "app"),
+  path.resolve(__dirname, '..', '..', '..', "components"),
+  path.resolve(__dirname, '..', '..', '..', "services")
 ];
 module.exports = {
   context: __dirname,
-  entry: '../../services/pro/init',
+  entry: '../../../services/pro/init',
   node: {
     __dirname: true
   },

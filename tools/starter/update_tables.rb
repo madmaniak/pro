@@ -30,7 +30,7 @@ end
 
 Sequel::Model.plugin :update_table
 
-require_relative '../ruby/helpers/load_models'
+require_relative '../consumers/ruby/helpers/load_models'
 
 $models.values.each do |model|
   model.update_table!

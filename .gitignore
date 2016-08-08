@@ -1,8 +1,8 @@
 nodes.conf
 config.yml
+node_modules
 *.log*
 services/pro/init.coffee
-tools/*/node_modules/*
 .byebug_history
 .vagrant
 _site

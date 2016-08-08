@@ -1,7 +1,7 @@
 require 'connection_pool'
 require 'disque'
 
-require_relative '../postgres/db'
+require_relative '../../db/postgres/db'
 require_relative 'helpers/monkey_patches'
 require_relative 'helpers/load_models'
 require_relative 'helpers/load_services'

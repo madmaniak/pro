@@ -1,1 +1,1 @@
-tools/ruby/Gemfile
+tools/consumers/ruby/Gemfile
