@@ -1,4 +1,5 @@
 require './dispatcher'
 require './helpers'
+require './router'
 require './requests'
 require './store'
