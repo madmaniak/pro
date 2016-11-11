@@ -44,5 +44,5 @@ global.Router =
     @go @toPath(@view, @params)
 
 Router.read()
-window.onpopstate = -> Dispatcher.trigger "url_changed"
-Dispatcher.on "url_changed", -> Router.read()
+global.onpopstate = -> Dispatcher.trigger "url_changed"
+Dispatcher.on "url_changed", -> Router.read(); global.render()
