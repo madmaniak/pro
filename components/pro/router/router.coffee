@@ -1,12 +1,16 @@
 global.Router =
 
-  ##root: "view_name"
+  init: (@root) ->
+    Router.read()
 
   read: ->
     list = L.compact document.location.pathname.split("/")
-    @view = if list.length % 2 then list.shift() else @root
+    @view = @_existance if list.length % 2 then list.shift() else @root
     @params = L.fromPairs L.chunk(list, 2)
     @_safeParams()
+
+  _existance: (view) ->
+    if _T[view.toUpperCase()] then view else 'not_found'
 
   _safeParams: ->
     @safeParams = L.fromPairs L.reject L.toPairs(@params), (pair) ->
@@ -43,6 +47,5 @@ global.Router =
     else @params[flag] = value
     @go @toPath(@view, @params)
 
-Router.read()
 global.onpopstate = -> Dispatcher.trigger "url_changed"
 Dispatcher.on "url_changed", -> Router.read(); global.render()
