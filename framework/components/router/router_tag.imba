@@ -1,3 +1,7 @@
+require './router'
+require './ref/ref'
+require './not_found/not_found'
+
 tag router
 
 	def render

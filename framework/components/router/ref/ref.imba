@@ -1,3 +1,5 @@
+require './ref.scss'
+
 tag ref
 
 	prop view

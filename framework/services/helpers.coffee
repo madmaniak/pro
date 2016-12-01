@@ -6,7 +6,9 @@ L.mixin compose: (base, layers...) ->
 
 # namespacer
 L.mixin ns: (path, action) ->
-  "#{path[9..-1]}/#{action}"
+  rm_dots = path.split('../')
+  framework = if rm_dots.length == 4 then 'framework/' else ''
+  "#{framework}#{rm_dots[rm_dots.length - 1]}/#{action}"
 
 L.mixin pipe: (context, methods) ->
   ->

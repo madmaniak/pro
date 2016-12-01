@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby tools/starter/start.rb $@
+ruby framework/tools/starter/start.rb $@

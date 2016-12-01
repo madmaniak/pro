@@ -1,8 +1,11 @@
+const fs = require('fs')
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+
+function fileExists(filePath){ try{ return fs.statSync(filePath).isFile() } catch (err){ return false } }
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -12,8 +15,11 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600})
 
+  var path = __dirname + '/../../../../app/index.html'
+  if( !fileExists(path) ){ path = __dirname + '/../../../app/index.html' }
+
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/../../../app/index.html')
+  mainWindow.loadURL('file://' + path)
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
