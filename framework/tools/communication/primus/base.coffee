@@ -8,4 +8,4 @@ module.exports.createPrimus = (port) ->
     port: port
     parser: 'binary'
     compression: true
-    transformer: 'websockets'
+    transformer: 'uws'
