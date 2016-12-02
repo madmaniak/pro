@@ -3,33 +3,7 @@
 require 'imba'
 global.L = require 'lodash'
 require '../../framework/services/index.coffee'
-require '../../app/app.scss'
-require '../../app/questions/questions.scss'
-require '../../app/demo/sketchpad/sketchpad.scss'
-require '../../app/questions/question/voteup/action.coffee'
-require '../../app/questions/question/voteup/index.imba'
-require '../../app/questions/question/del/index.imba'
-require '../../app/questions/question/index.imba'
-require '../../app/demo/sketchpad/index.imba'
-require '../../app/questions/add.imba'
-require '../../app/questions/index.imba'
-require '../../app/demo/index.imba'
-require '../../app/questions/more.imba'
-require '../../app/app.imba'
-class @['C'] extends Collection
-  @path: 'app/demo/sketchpad/path/get_dots'
-  @base: 'dots'
-  @order: [["i"]]
-Collection.list['app/demo/sketchpad/path/get_dots'] = @['C']
-class @['C'] extends Collection.Static
-  @path: 'app/demo/sketchpad/get_paths'
-  @base: 'paths'
-  @order: [["id", true]]
-  @relations: {dots:'app/demo/sketchpad/path/get_dots'}
-Collection.list['app/demo/sketchpad/get_paths'] = @['C']
-class @['C'] extends Collection.Dynamic
-  @path: 'app/questions/get'
-  @base: 'questions'
-  @order: [["votes", true], ["id", true]]
-Collection.list['app/questions/get'] = @['C']
+require '../../framework/app/app.imba'
+require '../../app/identities/identities.imba'
+require '../../services/init.coffee'
 require '../services/start.imba'
