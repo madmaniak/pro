@@ -1,6 +1,6 @@
 nodes.conf
 config.yml
-**/node_modules
+node_modules/*
 *.log*
 framework/services/pro/init.coffee
 .byebug_history
