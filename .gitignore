@@ -2,7 +2,7 @@ nodes.conf
 config.yml
 node_modules/*
 *.log*
-framework/services/pro/init.coffee
+framework/services/init.coffee
 .byebug_history
 .vagrant
 _site
