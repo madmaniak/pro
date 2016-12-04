@@ -24,3 +24,4 @@ class Collection.Dynamic extends Collection.Static
       @dynamic_next = true
     else if i == 0
       @dynamic_prev = true
+    i
