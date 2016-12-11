@@ -41,7 +41,7 @@ global.Router =
     @read()
 
   toggle: (flag, state) ->
-    if state != undefined
+    if state?
       if state
         @params[flag] = 1
       else
