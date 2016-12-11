@@ -40,11 +40,17 @@ global.Router =
       window.location.pathname, @toPath(@view, @params)
     @read()
 
-  toggle: (flag, value = 1) ->
-    value = String(value)
-    if @params[flag] == value
-    then delete @params[flag]
-    else @params[flag] = value
+  toggle: (flag, state) ->
+    if state != undefined
+      if state
+        @params[flag] = 1
+      else
+        delete @params[flag]
+    else
+      if @params[flag]
+        delete @params[flag]
+      else
+        @params[flag] = 1
     @go @toPath(@view, @params)
 
 global.onpopstate = -> Dispatcher.trigger "url_changed"
