@@ -25,7 +25,7 @@ class Collection.Static extends Collection
 
   go: (params, scope_f) ->
     @done = false
-    query = L.merge(params || {}, @params)
+    query = L.merge(params, @params)
     rk    = @constructor.path + L.stringify(query)
 
     Dispatcher.once Requests.perform(@constructor.path, query), (reply) =>

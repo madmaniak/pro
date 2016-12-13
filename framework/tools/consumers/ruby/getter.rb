@@ -22,8 +22,7 @@ class Getter < Service
         order: [ [:id, true] ],                                     # order [Sequel:key, boolean:descending]
         limit: 20,                                                  # limit per page
         relations: {},                                              # relations name => Getter
-        fields: [],                                                 # fields to select from data
-        params: []                                                  # relevant keys from request data
+        fields: []                                                  # fields to select from data
       }.merge(opts)
     end
 
@@ -67,7 +66,7 @@ class Getter < Service
 
     def base_scope(request)
       scope = @s[:scope]
-        .call(model, request.select{ |k| @s[:params].include? k })
+        .call(model, request)
         .limit(@s[:limit])
       scope.opts[:order] ||= order
       scope
