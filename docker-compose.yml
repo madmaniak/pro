@@ -2,13 +2,15 @@ version: '2'
 services:
   db:
     build: framework/tools/db/postgres
-    environment:
+    environment: &postgres_env
+      POSTGRES_HOST: db
       POSTGRES_DB: pro
       POSTGRES_USER: pro
       POSTGRES_PASSWORD: pro
   web:
     build: .
-    command: ./pro
+    environment: *postgres_env
+    command: bash framework/tools/starter/docker-up.sh
     volumes:
       - .:/pro
       - /pro/node_modules

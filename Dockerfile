@@ -11,7 +11,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get update && apt-get install -y lighttpd nodejs php5 php5-pgsql yarn && \
+RUN apt-get update && apt-get install -y lighttpd nodejs php5 php5-pgsql postgresql-client yarn && \
 yarn global add browserify coffee-script derequire http-server webpack webpack-dev-server
 
 RUN git clone https://github.com/antirez/disque.git && cd disque && make && \
