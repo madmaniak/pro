@@ -1,6 +1,6 @@
 base = require('./base')
 
-primus = base.createPrimus(8087)
+primus = base.createPrimus(8090)
 primus.on 'connection', (spark) ->
 
   spark.on 'data', (data) ->

@@ -1,0 +1,24 @@
+version: '2'
+services:
+  db:
+    build: framework/tools/db/postgres
+    environment:
+      POSTGRES_DB: pro
+      POSTGRES_USER: pro
+      POSTGRES_PASSWORD: pro
+  web:
+    build: .
+    command: ./pro
+    volumes:
+      - .:/pro
+      - /pro/node_modules
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+      - "8080:8080"
+      - "8090:8090"
+      - "8091:8091"
+    depends_on:
+      - db
+    links:
+      - db:database

@@ -2,7 +2,7 @@ base = require('./base')
 
 connections = {}
 
-primus = base.createPrimus(8088)
+primus = base.createPrimus(8091)
 primus.on 'connection', (spark) ->
 
   spark.on 'data', (data) ->

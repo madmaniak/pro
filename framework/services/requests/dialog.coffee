@@ -1,8 +1,8 @@
 global.Dialog =
 
   init: ->
-    @primusI = Primus.connect 'http://localhost:8087'
-    @primusO = Primus.connect 'http://localhost:8088'
+    @primusI = Primus.connect 'http://localhost:8090'
+    @primusO = Primus.connect 'http://localhost:8091'
     @pair_connections()
     @listen_to_data()
 
