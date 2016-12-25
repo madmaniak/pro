@@ -6,18 +6,15 @@ tag ref
 	prop target
 	prop go
 
-	def build
-		@url =
-			if @go
-			then "/{@go}"
-			else Router.url @view, @target
-		render
-
 	def render
 		<self.active=is_active>
 
 	def is_active
-		@url == document:location:pathname
+		var url =
+			if @go
+			then "/{@go}"
+			else Router.url @view, @target
+		url == Router:path
 
 	def ontap
 		return if is_active

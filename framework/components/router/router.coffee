@@ -8,6 +8,7 @@ global.Router =
     @view = @_existance if list.length % 2 then list.shift() else @root
     @params = L.fromPairs L.chunk(list, 2)
     @_safeParams()
+    @_path()
 
   _existance: (view) ->
     if _T[view.toUpperCase()] then view else 'not_found'
@@ -23,6 +24,12 @@ global.Router =
       .tap (array) =>
         array.unshift(view) if view and view != @root
       .join('/')
+
+  _path: ->
+    @path =
+      if document.location.pathname == "/"
+      then "/#{@view}"
+      else document.location.pathname
 
   url: (view, objects) ->
     if objects
