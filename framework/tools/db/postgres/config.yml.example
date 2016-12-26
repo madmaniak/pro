@@ -2,4 +2,3 @@ pg_host: db
 pg_port: '5432'
 pg_user: pro
 pg_pass: pro
-pg_db: pro
