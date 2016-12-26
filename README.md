@@ -13,27 +13,22 @@ git remote add origin git@github.com:<user>/<your_project>.git
 git push -u origin master
 ```
 
-#### Manual environment setup
+#### Setup and run
 
-Checkout [tools](https://github.com/madmaniak/pro/tree/master/tools) subdirectories
-and read there about dependencies. It takes about 30 minutes to install all of them.
-
-#### Auto setup using Vagrant
-
-Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 or greater). If you've tried to install stuff manually make sure there is no ```node_modules``` directory in ```tools/webpack``` and ```tools/primus```.
+[Docker compose](https://docs.docker.com/compose/install) (version >= 1.9.0 recommended) is required.
 
 ```
-vagrant up
-vagrant ssh
-cd /vagrant
+docker-compose up --build
+
+# it will download images and try to run pro but you will be notified
+about missing configs - copy them from the examples
+
+docker-compuse up
 ```
 
-#### After setup
-```
-foreman start
-```
-
-Visit [http://localhost:3000](http://localhost:3000).
+Visit [http://localhost:3000](http://localhost:3000)
+and
+[http://localhost:8000](http://localhost:8000) for database view.
 
 ### Upgrade Pro to the newest version
 

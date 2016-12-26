@@ -1,4 +1,5 @@
-pg_host: localhost
+pg_host: db
 pg_port: '5432'
-pg_user: postgres
-pg_pass: postgres
+pg_user: pro
+pg_pass: pro
+pg_db: pro
