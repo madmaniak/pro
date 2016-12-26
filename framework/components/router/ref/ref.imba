@@ -10,15 +10,13 @@ tag ref
 		<self.active=is_active>
 
 	def is_active
-		var url =
-			if @go
-			then "/{@go}"
-			else Router.url @view, @target
-		url == Router:path
+		var view, params
+		[ view, params ] = Router.split_path(link)
+		view == Router:view && L.isEqual params, Router:params
 
 	def ontap
 		return if is_active
-		if @go
-			Router.go "/{@go}"
-		else
-			Router.go Router.url @view, @target
+		Router.go link
+
+	def link
+		@go || Router.url @view, @target
