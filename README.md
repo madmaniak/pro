@@ -4,7 +4,7 @@
 
 ### Start
 
-```
+```sh
 git clone git@github.com:madmaniak/pro <your_project> -o pro
 
 # create an empty repo on github or somewhere else and:
@@ -17,11 +17,11 @@ git push -u origin master
 
 [Docker compose](https://docs.docker.com/compose/install) (version >= 1.9.0 recommended) is required.
 
-```
+```sh
 docker-compose up --build
 
 # it will download images and try to run pro but you will be notified
-about missing configs - copy them from the examples
+# about missing configs - copy them from the examples
 
 docker-compuse up
 ```
