@@ -15,7 +15,7 @@ git push -u origin master
 
 #### Setup and run
 
-[Docker compose](https://docs.docker.com/compose/install) (version >= 1.9.0 recommended) is required.
+[Docker Compose](https://docs.docker.com/compose/install) (version >= 1.9.0 recommended) is required.
 
 ```sh
 docker-compose up --build
@@ -23,7 +23,7 @@ docker-compose up --build
 # it will download images and try to run pro but you will be notified
 # about missing configs - copy them from the examples
 
-docker-compuse up
+docker-compose up
 ```
 
 Visit [http://localhost:3000](http://localhost:3000)
