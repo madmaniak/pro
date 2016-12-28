@@ -14,9 +14,6 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get update && apt-get install -y lighttpd nodejs postgresql-client yarn && \
 yarn global add browserify coffee-script derequire http-server webpack webpack-dev-server
 
-ADD framework/tools/consumers/ruby/Gemfile /pro/framework/tools/consumers/ruby/Gemfile
-RUN cd framework/tools/consumers/ruby && bundle install
-
 RUN mkdir -p /tmp/node_modules/primus/tmp/node_modules/webpack
 ADD framework/tools/communication/primus/package.json /tmp/node_modules/primus/package.json
 ADD framework/tools/bundler/webpack/package.json /tmp/node_modules/webpack/package.json
