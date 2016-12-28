@@ -1,5 +1,17 @@
 version: '2'
 services:
+  assets:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.assets
+    volumes:
+      - .:/pro
+      - /pro/node_modules
+    ports:
+      - "8080:8080"
+    working_dir: /pro/framework/tools/bundler/webpack
+    command: npm run webpack-server
+
   bus:
     build: framework/tools/bus/disque
     command: disque-server
@@ -42,10 +54,10 @@ services:
       - .:/pro
       - /pro/node_modules
     ports:
-      - "8080:8080"
       - "8090:8090"
       - "8091:8091"
     depends_on:
+      - assets
       - bus
       - db
       - static
