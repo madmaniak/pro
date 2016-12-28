@@ -1,10 +1,4 @@
 <?php
-
-if ($_SERVER["REQUEST_URI"] == '/') {
-  header('Location: http://localhost:8000/?pgsql=&username=' . getenv('pg_user') . '&db=' . getenv('app'));
-  die();
-}
-
 function adminer_object() {
 
   include_once "./plugins/plugin.php";
@@ -19,13 +13,15 @@ function adminer_object() {
 
   class AdminerCustomization extends AdminerPlugin {
     function name() {
-      return getenv('app');
+      return getenv('APP');
     }
     function credentials() {
-      return array(getenv('pg_host') . ':' . getenv('pg_port'), getenv('pg_user'), getenv('pg_pass'));
+      return array(
+        getenv('POSTGRES_HOST') . ':' . getenv('POSTGRES_PORT'), getenv('POSTGRES_USER'), getenv('POSTGRES_PASSWORD')
+      );
     }
     function database() {
-      return getenv('app');
+      return getenv('APP');
     }
   }
   return new AdminerCustomization($plugins);

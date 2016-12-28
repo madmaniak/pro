@@ -3,10 +3,19 @@ services:
   db:
     build: framework/tools/db/postgres
     environment: &postgres_env
+      APP: pro
       POSTGRES_HOST: db
-      POSTGRES_DB: pro
+      POSTGRES_PORT: 5432
       POSTGRES_USER: pro
       POSTGRES_PASSWORD: pro
+  db_admin:
+    build: framework/tools/db/postgres/admin
+    environment: *postgres_env
+    command: php -S 0.0.0.0:8000 -t /db_admin
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
   web:
     build: .
     environment: *postgres_env
@@ -16,11 +25,8 @@ services:
       - /pro/node_modules
     ports:
       - "3000:3000"
-      - "8000:8000"
       - "8080:8080"
       - "8090:8090"
       - "8091:8091"
     depends_on:
       - db
-    links:
-      - db:database
