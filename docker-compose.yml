@@ -24,6 +24,16 @@ services:
     depends_on:
       - db
 
+  static:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.static
+    command: lighttpd -D -f /pro/framework/tools/static/lighttpd/lightppd.conf
+    volumes:
+      - .:/pro
+    ports:
+      - "3000:3000"
+
   web:
     build: .
     environment: *postgres_env
@@ -32,10 +42,10 @@ services:
       - .:/pro
       - /pro/node_modules
     ports:
-      - "3000:3000"
       - "8080:8080"
       - "8090:8090"
       - "8091:8091"
     depends_on:
       - bus
       - db
+      - static

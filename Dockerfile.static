@@ -1,0 +1,4 @@
+FROM sebp/lighttpd:latest
+
+RUN mkdir /pro
+ADD . /pro
