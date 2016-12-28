@@ -1,4 +1,3 @@
-bus: disque-server
 dialogI: sh -c 'cd framework/tools/communication/primus && exec coffee entry.coffee'
 dialogO: sh -c 'cd framework/tools/communication/primus && exec coffee outgo.coffee'
 assets: sh -c 'cd framework/tools/bundler/webpack && exec npm run webpack-server'

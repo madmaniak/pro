@@ -1,2 +1,2 @@
-disque_host: localhost
+disque_host: bus
 disque_port: '7711'

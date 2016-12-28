@@ -1,5 +1,11 @@
 version: '2'
 services:
+  bus:
+    build: framework/tools/bus/disque
+    command: disque-server
+    ports:
+      - "7711:7711"
+
   db:
     build: framework/tools/db/postgres
     environment: &postgres_env
@@ -31,4 +37,5 @@ services:
       - "8090:8090"
       - "8091:8091"
     depends_on:
+      - bus
       - db
