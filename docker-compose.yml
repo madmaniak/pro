@@ -8,6 +8,7 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_USER: pro
       POSTGRES_PASSWORD: pro
+
   db_admin:
     build: framework/tools/db/postgres/admin
     environment: *postgres_env
@@ -16,6 +17,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
   web:
     build: .
     environment: *postgres_env
