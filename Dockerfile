@@ -14,10 +14,6 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get update && apt-get install -y lighttpd nodejs postgresql-client yarn && \
 yarn global add browserify coffee-script derequire http-server webpack webpack-dev-server
 
-RUN git clone https://github.com/antirez/disque.git && cd disque && make && \
-cp src/disque-server /usr/local/bin && cp src/disque /usr/local/bin && \
-cp src/disque-check-aof /usr/local/bin
-
 ADD framework/tools/consumers/ruby/Gemfile /pro/framework/tools/consumers/ruby/Gemfile
 RUN cd framework/tools/consumers/ruby && bundle install
 
