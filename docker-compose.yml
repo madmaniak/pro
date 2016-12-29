@@ -14,9 +14,32 @@ services:
 
   bus:
     build: framework/tools/bus/disque
+    environment: &disque_env
+      disque_host: bus
+      disque_port: 7711
     command: disque-server
     ports:
       - "7711:7711"
+
+  communication_input:
+    build: framework/tools/communication/primus
+    environment: *disque_env
+    command: coffee entry.coffee
+    volumes:
+      - ./framework/tools/communication/primus:/primus
+      - /primus/node_modules
+    ports:
+      - "8090:8090"
+
+  communication_output:
+    build: framework/tools/communication/primus
+    environment: *disque_env
+    command: coffee outgo.coffee
+    volumes:
+      - ./framework/tools/communication/primus:/primus
+      - /primus/node_modules
+    ports:
+      - "8091:8091"
 
   db:
     build: framework/tools/db/postgres
@@ -52,12 +75,10 @@ services:
     command: bash framework/tools/starter/docker-up.sh
     volumes:
       - .:/pro
-      - /pro/node_modules
-    ports:
-      - "8090:8090"
-      - "8091:8091"
     depends_on:
       - assets
+      - communication_input
+      - communication_output
       - bus
       - db
       - static

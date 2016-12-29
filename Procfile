@@ -1,5 +1,3 @@
-dialogI: sh -c 'cd framework/tools/communication/primus && exec coffee entry.coffee'
-dialogO: sh -c 'cd framework/tools/communication/primus && exec coffee outgo.coffee'
 ruby-1: sh -c 'ruby framework/tools/consumers/ruby/entry.rb'
 ruby-2: sh -c 'ruby framework/tools/consumers/ruby/entry.rb'
 ruby-3: sh -c 'ruby framework/tools/consumers/ruby/entry.rb'
