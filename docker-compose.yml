@@ -1,5 +1,14 @@
 version: '2'
 services:
+  db:
+    build: framework/tools/db/postgres
+    environment: &postgres_env
+      APP: pro
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: pro
+      POSTGRES_PASSWORD: pro
+
   assets:
     build:
       context: .
@@ -21,6 +30,28 @@ services:
     ports:
       - "7711:7711"
 
+  consumer:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.consumer
+    environment:
+      <<: *disque_env
+      <<: *postgres_env
+      pg_host: db
+      pg_port: 5432
+      pg_user: pro
+      pg_pass: pro
+      app: pro
+    command: bash framework/tools/consumers/ruby/docker-up.sh
+    volumes:
+      - .:/pro
+    depends_on:
+      - communication_input
+      - communication_output
+      - bus
+      - db
+      - static
+
   communication_input:
     build: framework/tools/communication/primus
     environment: *disque_env
@@ -41,15 +72,6 @@ services:
     ports:
       - "8091:8091"
 
-  db:
-    build: framework/tools/db/postgres
-    environment: &postgres_env
-      APP: pro
-      POSTGRES_HOST: db
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: pro
-      POSTGRES_PASSWORD: pro
-
   db_admin:
     build: framework/tools/db/postgres/admin
     environment: *postgres_env
@@ -68,17 +90,3 @@ services:
       - .:/pro
     ports:
       - "3000:3000"
-
-  web:
-    build: .
-    environment: *postgres_env
-    command: bash framework/tools/starter/docker-up.sh
-    volumes:
-      - .:/pro
-    depends_on:
-      - assets
-      - communication_input
-      - communication_output
-      - bus
-      - db
-      - static

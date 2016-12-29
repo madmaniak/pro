@@ -5,4 +5,4 @@ until PGPASSWORD=$POSTGRES_PASSWORD psql -h $POSTGRES_HOST -U $POSTGRES_USER -c 
   sleep 1
 done
 
-ruby framework/tools/starter/start.rb
+bundle exec ruby framework/tools/starter/start.rb
