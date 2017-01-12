@@ -78,13 +78,13 @@ services:
     command: php -S 0.0.0.0:8000 -t /db_admin
     ports:
       - "8000:8000"
+    volumes:
+      - .:/db_admin
     depends_on:
       - db
 
   static:
-    build:
-      context: .
-      dockerfile: ./Dockerfile.static
+    image: sebp/lighttpd:latest
     command: lighttpd -D -f /pro/framework/tools/static/lighttpd/lightppd.conf
     volumes:
       - .:/pro
