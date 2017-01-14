@@ -5,7 +5,7 @@ global.Router =
 
   read: ->
     [@view, @params] = @split_path document.location.pathname
-    @_safeParams()
+    @_safe_params()
 
   split_path: (path) ->
     list = L.compact path.split("/")
@@ -13,15 +13,16 @@ global.Router =
     params = L.fromPairs L.chunk(list, 2)
     [ view, params ]
 
-
+  # Views is a list of components which are meant to be a top views
+  # It should be given by framework
   _existance: (view) ->
-    if _T[view.toUpperCase()] then view else 'not_found'
+    if L.includes(Views, view) then view else 'not_found'
 
-  _safeParams: ->
-    @safeParams = L.fromPairs L.reject L.toPairs(@params), (pair) ->
+  _safe_params: ->
+    @safe_params = L.fromPairs L.reject L.toPairs(@params), (pair) ->
       /^_/.test pair[0]
 
-  toPath: (view = @view, params = @safeParams) ->
+  to_path: (view = @view, params = @safe_params) ->
     '/' + L(params)
       .toPairs()
       .flatten()
@@ -34,7 +35,7 @@ global.Router =
       attributes = L.reduce L.concat({}, objects), (map, el) ->
         map[el.type] = el.id
         map
-    @toPath view, L.defaults attributes || {}, @safeParams
+    @to_path view, L.defaults attributes || {}, @safe_params
 
   go: (path) ->
     history.pushState {}, null, path
@@ -42,7 +43,7 @@ global.Router =
 
   write: ->
     window.history.replaceState {},
-      window.location.pathname, @toPath(@view, @params)
+      window.location.pathname, @to_path(@view, @params)
     @read()
 
   toggle: (flag, state) ->
@@ -56,7 +57,7 @@ global.Router =
         delete @params[flag]
       else
         @params[flag] = 1
-    @go @toPath(@view, @params)
+    @go @to_path(@view, @params)
 
 global.onpopstate = -> Dispatcher.trigger "url_changed"
 Dispatcher.on "url_changed", -> Router.read(); global.render()
