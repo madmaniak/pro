@@ -1,0 +1,22 @@
+consumer:
+  build:
+    context: .
+    dockerfile: ./Dockerfile.consumer
+  extends:
+    file: framework/tools/containers/docker/common.yml
+    service: pro
+  environment:
+    pg_host: db
+    pg_port: 5432
+    pg_user: pro
+    pg_pass: pro
+    app: pro
+  command: bash framework/tools/consumers/ruby/docker-up.sh
+  volumes:
+    - .:/pro
+  depends_on:
+    - communication_input
+    - communication_output
+    - bus
+    - db
+    - static

@@ -1,0 +1,7 @@
+static:
+  image: sebp/lighttpd:latest
+  command: lighttpd -D -f /pro/framework/tools/static/lighttpd/lightppd.conf
+  volumes:
+    - .:/pro
+  ports:
+    - "3000:3000"

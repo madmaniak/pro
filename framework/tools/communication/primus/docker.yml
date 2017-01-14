@@ -1,0 +1,23 @@
+communication_input:
+  build: framework/tools/communication/primus
+  extends:
+    file: framework/tools/containers/docker/common.yml
+    service: pro
+  command: coffee entry.coffee
+  volumes:
+    - ./framework/tools/communication/primus:/primus
+    - /primus/node_modules
+  ports:
+    - "8090:8090"
+
+communication_output:
+  build: framework/tools/communication/primus
+  extends:
+    file: framework/tools/containers/docker/common.yml
+    service: pro
+  command: coffee outgo.coffee
+  volumes:
+    - ./framework/tools/communication/primus:/primus
+    - /primus/node_modules
+  ports:
+    - "8091:8091"

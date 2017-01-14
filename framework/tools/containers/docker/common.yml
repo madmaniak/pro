@@ -1,0 +1,13 @@
+version: '2'
+services:
+  pro:
+    environment:
+      APP: pro
+
+      disque_host: bus
+      disque_port: 7711
+
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: pro
+      POSTGRES_PASSWORD: pro

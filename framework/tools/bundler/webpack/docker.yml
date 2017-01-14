@@ -1,0 +1,11 @@
+assets:
+  build:
+    context: .
+    dockerfile: ./Dockerfile.assets
+  volumes:
+    - .:/pro
+    - /pro/node_modules
+  ports:
+    - "8080:8080"
+  working_dir: /pro/framework/tools/bundler/webpack
+  command: npm run webpack-server

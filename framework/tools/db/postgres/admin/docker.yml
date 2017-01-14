@@ -1,0 +1,12 @@
+db_admin:
+  build: framework/tools/db/postgres/admin
+  extends:
+    file: framework/tools/containers/docker/common.yml
+    service: pro
+  command: php -S 0.0.0.0:8000 -t /db_admin
+  ports:
+    - "8000:8000"
+  volumes:
+    - .:/db_admin
+  depends_on:
+    - db

@@ -1,0 +1,5 @@
+db:
+  build: framework/tools/db/postgres
+  extends:
+    file: framework/tools/containers/docker/common.yml
+    service: pro

@@ -6,3 +6,4 @@ framework/services/init.coffee
 .byebug_history
 .vagrant
 _site
+docker-compose.yml
