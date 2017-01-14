@@ -18,6 +18,9 @@ git push -u origin master
 [Docker Compose](https://docs.docker.com/compose/install) (version >= 1.9.0 recommended) is required.
 
 ```sh
+# Build Docker configuration
+docker build -t pro:init -f framework/tools/containers/docker/Dockerfile . && docker run -v $(pwd):/pro pro:init
+
 docker-compose up --build
 
 # it will download images and try to run pro but you will be notified

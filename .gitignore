@@ -7,3 +7,4 @@ framework/services/init.coffee
 .vagrant
 _site
 docker-compose.yml
+Dockerfile.*
