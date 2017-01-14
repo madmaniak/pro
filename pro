@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby framework/tools/starter/start.rb $@
+./framework/tools/containers/docker/start.sh $@
