@@ -3,6 +3,8 @@ config.yml
 node_modules/*
 *.log*
 framework/services/init.coffee
+framework/public/bundle.js
+framework/public/index.html
 .byebug_history
 .vagrant
 _site

@@ -6,8 +6,8 @@ module.exports = {
     __dirname: true
   },
   output: {
-     publicPath: 'http://localhost:8080/',
-     filename: 'build/bundle.js'
+	path: __dirname + '/../../../public',
+    filename: 'bundle.js'
   },
   devtool: 'eval',
   module: {

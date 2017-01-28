@@ -1,3 +1,5 @@
+Primus = require('../../tools/communication/primus/primus')
+
 global.Dialog =
 
   init: ->
