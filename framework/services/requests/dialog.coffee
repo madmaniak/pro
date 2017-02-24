@@ -3,8 +3,9 @@ Primus = require('../../tools/communication/primus/primus')
 global.Dialog =
 
   init: ->
-    @primusI = Primus.connect 'http://localhost:8090'
-    @primusO = Primus.connect 'http://localhost:8091'
+    url = "#{location.protocol}//#{location.hostname}"
+    @primusI = Primus.connect "#{url}:8090"
+    @primusO = Primus.connect "#{url}:8091"
     @pair_connections()
     @listen_to_data()
 
