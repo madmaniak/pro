@@ -4,5 +4,5 @@ require '../components/router/router_tag'
 tag #app
 
 	def render
-		<self>
-			<router>
+		<self> # <router>
+			'Pro is running'
