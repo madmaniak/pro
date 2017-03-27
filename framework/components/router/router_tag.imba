@@ -1,5 +1,6 @@
 require './router'
 require './ref/ref'
+require './switch/switch'
 require './not_found/not_found'
 
 tag router
