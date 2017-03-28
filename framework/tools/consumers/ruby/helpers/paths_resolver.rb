@@ -1,21 +1,23 @@
 module PathsResolver
   def self.resolve(kind, blacklist: [], sort: false)
-    paths = @paths.select{ |path| path =~ /#{kind}$/ }
+    @paths.map{ |paths_group|
+      paths = paths_group.select{ |path| path =~ /#{kind}$/ }
 
-    if blacklist.any?
-      paths.reject!{ |path| path =~ /(#{blacklist.join('|')})/ }
-    end
+      if blacklist.any?
+        paths.reject!{ |path| path =~ /(#{blacklist.join('|')})/ }
+      end
 
-    if sort
-      paths.sort_by!{ |path|
-        parts = path.split("/")
-        [ ( sort == :leafs_first ? -parts.size : parts.size ) , parts.last ]
-      }
-    else paths end
+      if sort
+        paths.sort_by!{ |path|
+          parts = path.split("/")
+          [ ( sort == :leafs_first ? -parts.size : parts.size ) , parts.last ]
+        }
+      else paths end
+    }.flatten
   end
 
   def self.load
-    @paths = Dir["{app,components,services}/**/*"].reject{ |path| path =~ /node_modules/ }
+    @paths = [ Dir["services/**/*"], Dir["components/**/*"], Dir["app/**/*"] ]
   end
 
   def self.free
