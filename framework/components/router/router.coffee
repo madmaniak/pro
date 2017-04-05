@@ -25,6 +25,7 @@ global.Router =
   to_path: (view = @view, params = @safe_params) ->
     '/' + L(params)
       .toPairs()
+      .reject (p) -> !p[1]
       .flatten()
       .tap (array) =>
         array.unshift(view) if view and view != @root
