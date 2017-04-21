@@ -14,6 +14,6 @@
     "primus": "primus/primus",
     "thunk-disque": "^0.5.9",
     "thunk-redis": "^1.7.3",
-    "uws": "^0.7.9"
+    "uws": "^0.14.1"
   }
 }
