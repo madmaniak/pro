@@ -17,6 +17,7 @@ tag ref
 	def ontap
 		return if is_active
 		Router.go link
+		window.scrollTo 0, 0
 
 	def link
 		@go || Router.url @view, @target
