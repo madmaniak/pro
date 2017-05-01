@@ -45,7 +45,7 @@ global.Router =
   write: ->
     window.history.replaceState {},
       window.location.pathname, @to_path(@view, @params)
-    @read()
+    Dispatcher.trigger "url_changed"
 
   toggle: (flag, state) ->
     if state?
