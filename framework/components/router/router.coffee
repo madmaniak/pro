@@ -1,5 +1,7 @@
 global.Router =
 
+  h: {} # place for helpers
+
   init: (@root) ->
     Router.read()
 
