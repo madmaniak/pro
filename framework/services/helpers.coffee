@@ -33,6 +33,3 @@ L.mixin tmp_id: (object) -> /tmp/.exec object.id
 L.mixin wait_for_real_id: (objects, action) ->
   !if object = L.find objects, L.tmp_id
     Dispatcher.once "#{object.id}_to_id", action
-
-L.mixin param: (key) ->
-  decodeURI(Router.params[key] || '')

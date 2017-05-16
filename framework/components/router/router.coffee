@@ -1,6 +1,13 @@
-global.Router =
+global.Router = global.R =
 
-  h: {} # place for helpers
+  getters: {}
+  setters: {}
+
+  param: (key) ->
+    v = decodeURI(@params[key] || '')
+    if @getters[key]
+    then @getters[key](v)
+    else v
 
   init: (@root) ->
     Router.read()
@@ -44,7 +51,22 @@ global.Router =
     history.pushState {}, null, path
     Dispatcher.trigger "url_changed"
 
-  write: ->
+  write: (values...) ->
+    # accept arguments keeping key, value, key, value order
+    # or a hash as a first argument
+    # serialize using setters
+    # if no argument given just refresh url and rerender
+
+    if values.length
+      if values.length == 1
+        L.each values[0], (v, k) ->
+          R.params[k] = if R.setters[k] then R.setters[k](v) else v
+      else
+        L.each values, (k, i) ->
+          if i % 2
+            v = values[i+1]
+            R.params[k] = if R.setters[k] then R.setters[k](v) else v
+
     window.history.replaceState {},
       window.location.pathname, @to_path(@view, @params)
     Dispatcher.trigger "url_changed"
