@@ -64,7 +64,7 @@ global.Router = global.R =
           R.params[k] = if R.setters[k] then R.setters[k](v) else v
       else
         L.each values, (k, i) ->
-          if i % 2
+          unless i % 2
             v = values[i+1]
             R.params[k] = if R.setters[k] then R.setters[k](v) else v
 
