@@ -1,12 +1,13 @@
 global.Router = global.R =
 
+  cache: {}
   getters: {}
   setters: {}
 
   param: (key) ->
     v = decodeURI(@params[key] || '')
     if @getters[key]
-    then @getters[key](v)
+    then @cache[key] ||= @getters[key](v)
     else v
 
   init: (@root) ->
@@ -85,4 +86,7 @@ global.Router = global.R =
     @go @to_path(@view, @params)
 
 global.onpopstate = -> Dispatcher.trigger "url_changed"
-Dispatcher.on "url_changed", -> Router.read(); global.render()
+Dispatcher.on "url_changed", ->
+  Router.cache = {}
+  Router.read()
+  global.render()
