@@ -73,17 +73,9 @@ global.Router = global.R =
     Dispatcher.trigger "url_changed"
 
   toggle: (flag, state) ->
-    if state?
-      if state
-        @params[flag] = 1
-      else
-        delete @params[flag]
-    else
-      if @params[flag]
-        delete @params[flag]
-      else
-        @params[flag] = 1
-    @go @to_path(@view, @params)
+    @write flag, if state?
+    then ( 1 if state )
+    else ( 1 if !@params[flag] )
 
 global.onpopstate = -> Dispatcher.trigger "url_changed"
 Dispatcher.on "url_changed", ->
