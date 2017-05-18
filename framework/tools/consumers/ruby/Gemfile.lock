@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/madmaniak/sequel-seek-pagination.git
-  revision: fa0e267449c0e9f81fa03252c41798a9bb64e6f4
+  revision: 8907400653c551d24a8dae7548de05616883c467
   specs:
     sequel-seek-pagination (0.2.1)
       sequel (~> 4.0)
