@@ -1,0 +1,65 @@
+---
+layout: posts
+title: What is a Pro Router?
+meta: Let's explain basics of frontend routing in Pro - which uses a singleton service.
+---
+<p>
+Let us look on an example URL:
+
+{% highlight bash %}
+http://www.example.com/section/post/1/comment/123
+{% endhighlight %}
+
+On any site we can play in JS console with a <b>location</b> object.
+So we'll see an url contains of a protocol, host and a pathname.
+
+Saying about pathname it's this part:
+{% highlight bash %}
+/section/post/1/comment/123
+{% endhighlight %}
+
+What we can say about this string it has sections separated by <b>/</b>.
+It means we can split by it and receive an array:
+
+{% highlight ruby %}
+['section', 'post', '1', 'comment', '123']
+{% endhighlight %}
+
+Let's agrre that first element <b>section</b> is a view name.
+Then make from the other elements an array of pairs:
+
+{% highlight ruby %}
+[['post', '1'], ['comment', '123']]
+{% endhighlight %}
+
+Which can be easily translated to a hash:
+
+{% highlight ruby %}
+{ post: 1, comment: 123 }
+{% endhighlight %}
+
+You can treat this hash as an equivalent of Ruby on Rails params object
+which you use in Rails controllers. But here you use it in frontend components.
+
+Play it in console using those methods:
+
+{% highlight ruby %}
+Router.param('post')
+{% endhighlight %}
+
+and
+
+{% highlight ruby %}
+Router.write({ post: 2 })
+{% endhighlight %}
+
+or
+
+{% highlight ruby %}
+Router.write('post', 2)
+{% endhighlight %}
+
+Read a code <a href='https://github.com/madmaniak/pro/blob/master/framework/components/router/router.coffee'>here</a>:
+
+You can use it with any single page application outside Pro. Have fun!
+</p>
