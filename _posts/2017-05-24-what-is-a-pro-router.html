@@ -11,7 +11,7 @@ http://www.example.com/section/post/1/comment/123
 {% endhighlight %}
 
 On any site we can play in JS console with a <b>location</b> object.
-So we'll see an url contains of a protocol, host and a pathname.
+So we'll see an url contains of a <b>protocol</b>, <b>hostname</b> and a <b>pathname</b>.
 
 Saying about pathname it's this part:
 {% highlight bash %}
@@ -25,7 +25,7 @@ It means we can split by it and receive an array:
 ['section', 'post', '1', 'comment', '123']
 {% endhighlight %}
 
-Let's agrre that first element <b>section</b> is a view name.
+Let's agree that first element <b>section</b> is a view name.
 Then make from the other elements an array of pairs:
 
 {% highlight ruby %}
@@ -44,6 +44,12 @@ which you use in Rails controllers. But here you use it in frontend components.
 Play it in console using those methods:
 
 {% highlight ruby %}
+Router.view
+{% endhighlight %}
+
+and
+
+{% highlight ruby %}
 Router.param('post')
 {% endhighlight %}
 
@@ -59,7 +65,7 @@ or
 Router.write('post', 2)
 {% endhighlight %}
 
-Read a code <a href='https://github.com/madmaniak/pro/blob/master/framework/components/router/router.coffee'>here</a>:
+Read a code <a href='https://github.com/madmaniak/pro/blob/master/framework/components/router/router.coffee'>here</a>.
 
 You can use it with any single page application outside Pro. Have fun!
 </p>
