@@ -17,6 +17,7 @@ global.Dialog =
 
   listen_to_data: ->
     @primusO.on 'data', (data) ->
+      return if /primus::ping/.exec(data)
       console.log data
       Requests.receive data
 

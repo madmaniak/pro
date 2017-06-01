@@ -4,6 +4,7 @@ primus = base.createPrimus(8090)
 primus.on 'connection', (spark) ->
 
   spark.on 'data', (data) ->
+    return if /primus::ping/.exec(data)
     job = "front/#{data.event}"
     payload = JSON.stringify L.merge(data, sid: spark.id)
 
