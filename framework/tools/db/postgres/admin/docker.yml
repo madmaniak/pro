@@ -3,7 +3,7 @@ db_admin:
   extends:
     file: framework/tools/containers/docker/common.yml
     service: pro
-  command: php -S 0.0.0.0:8000 -t /db_admin
+  command: php -S 0.0.0.0:8000 -t /db_admin/framework/tools/db/postgres/admin/
   ports:
     - "8000:8000"
   volumes:
