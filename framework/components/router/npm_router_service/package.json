@@ -1,0 +1,20 @@
+{
+  "name": "pro-router",
+  "version": "1.0.0",
+  "description": "Fully automated singleton router service for frontend. Use url as data store",
+  "main": "router.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madmaniak/pro.git"
+  },
+  "keywords": [
+    "frontend",
+    "router"
+  ],
+  "author": "Marek Piasecki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madmaniak/pro/issues"
+  },
+  "homepage": "https://github.com/madmaniak/pro/framework/components/router/npm_router_service"
+}
