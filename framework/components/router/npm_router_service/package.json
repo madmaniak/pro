@@ -1,7 +1,7 @@
 {
   "name": "pro-router",
-  "version": "1.0.0",
   "description": "Fully automated singleton router service for frontend. Use url as data store",
+  "version": "2.5.1",
   "main": "router.js",
   "repository": {
     "type": "git",

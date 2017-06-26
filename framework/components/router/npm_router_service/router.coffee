@@ -1,4 +1,4 @@
-module.exports = R =
+module.exports = global.R =
 
   init: (opts = {}) ->
     @root   ||= opts.root    || 'main'
@@ -36,7 +36,7 @@ module.exports = R =
             R.params[k] = if R.setters[k] then R.setters[k](v) else v
 
     window.history.replaceState {},
-      window.location.pathname, @to_path(@view, @params)
+      location.pathname, @to_path(@view, @params)
     @url_changed()
 
   toggle: (flag, state) ->
@@ -51,7 +51,7 @@ module.exports = R =
   # </MAIN API>
 
   read: ->
-    [@view, @params] = @split_path document.location.pathname
+    [@view, @params] = @split_path location.pathname
     @_safe_params()
 
   split_path: (path) ->
@@ -68,13 +68,9 @@ module.exports = R =
       /^_/.test pair[0]
 
   to_path: (view = @view, params = @safe_params) ->
-    '/' + L(params)
-      .toPairs()
-      .reject (p) -> !p[1]
-      .flatten()
-      .tap (array) =>
-        array.unshift(view) if view and view != @root
-      .join('/')
+    array = @h.flatten @h.reject( @h.toPairs(params), (p) -> !p[1] )
+    array.unshift(view) if view and view != @root
+    '/' + array.join('/')
 
   url: (view, objects) ->
     if objects
