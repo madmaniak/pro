@@ -1,5 +1,10 @@
 window.R =
 
+  # local cache
+  _location: location
+  _replaceState: history.replaceState.bind(history)
+  _pushState: history.pushState.bind(history)
+
   init: (opts = {}) ->
     @root   ||= opts.root    || 'main'
     @views  ||= opts.views   || [@root]
@@ -34,8 +39,8 @@ window.R =
             v = arguments[i+1]
             @_write(k,v)
 
-    history.replaceState {},
-      location.pathname, @to_path(@view, @params)
+    @_replaceState {},
+      @_location.pathname, @to_path(@view, @params)
     @url_changed()
 
   _write: (k,v) ->
@@ -47,13 +52,13 @@ window.R =
     else ( 1 if !@params[flag] )
 
   go: (path) ->
-    history.pushState {}, null, path
+    @_pushState {}, null, path
     @url_changed()
 
   # </MAIN API>
 
   read: ->
-    [@view, @params] = @split_path location.pathname
+    [@view, @params] = @split_path @_location.pathname
     @_safe_params()
 
   split_path: (path) ->
@@ -73,13 +78,6 @@ window.R =
     array = @h.flatten @h.reject( @h.toPairs(params), (p) -> !p[1] )
     array.unshift(view) if view and view != @root
     '/' + array.join('/')
-
-  url: (view, objects) ->
-    if objects
-      attributes = @h.reduce @h.concat({}, objects), (map, el) ->
-        map[el.type] = el.id
-        map
-    @to_path view, @h.defaults attributes || {}, @safe_params
 
   url_changed: ->
     @cache = {}

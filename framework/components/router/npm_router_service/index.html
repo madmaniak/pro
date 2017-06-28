@@ -1,0 +1,10 @@
+<html>
+  <body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js'></script>
+    <script src='https://unpkg.com/pro-router@3.2.0/pro-router-standalone.min.js'></script>
+    <script>
+      window.render = function(){ console.log(R.view); console.log(JSON.stringify(R.params)) }
+      R.init({helpers: _})
+    </script>
+  </body>
+</html>

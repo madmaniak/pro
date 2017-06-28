@@ -1,4 +1,7 @@
 window.R = {
+  _location: location,
+  _replaceState: history.replaceState.bind(history),
+  _pushState: history.pushState.bind(history),
   init: function(opts) {
     if (opts == null) {
       opts = {};
@@ -40,7 +43,7 @@ window.R = {
         }
       }
     }
-    history.replaceState({}, location.pathname, this.to_path(this.view, this.params));
+    this._replaceState({}, this._location.pathname, this.to_path(this.view, this.params));
     this.url_changed();
   },
   _write: function(k, v) {
@@ -50,12 +53,12 @@ window.R = {
     this.write(flag, state != null ? (state ? 1 : void 0) : (!this.params[flag] ? 1 : void 0));
   },
   go: function(path) {
-    history.pushState({}, null, path);
+    this._pushState({}, null, path);
     this.url_changed();
   },
   read: function() {
     var ref;
-    ref = this.split_path(location.pathname), this.view = ref[0], this.params = ref[1];
+    ref = this.split_path(this._location.pathname), this.view = ref[0], this.params = ref[1];
     this._safe_params();
   },
   split_path: function(path) {
@@ -92,16 +95,6 @@ window.R = {
       array.unshift(view);
     }
     return '/' + array.join('/');
-  },
-  url: function(view, objects) {
-    var attributes;
-    if (objects) {
-      attributes = this.h.reduce(this.h.concat({}, objects), function(map, el) {
-        map[el.type] = el.id;
-        return map;
-      });
-    }
-    return this.to_path(view, this.h.defaults(attributes || {}, this.safe_params));
   },
   url_changed: function() {
     this.cache = {};

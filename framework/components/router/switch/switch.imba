@@ -5,11 +5,14 @@ tag switch
 	prop key
 	prop disable
 
+	def setup
+		@r = R
+
 	def render
 		<self.is_on=is_on .disabled=@disable>
 
 	def is_on
-		Router:params[@key]
+		@r:params[@key]
 
 	def ontap
-		Router.toggle key unless @disable
+		@r.toggle key unless @disable
