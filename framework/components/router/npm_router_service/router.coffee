@@ -1,11 +1,11 @@
-module.exports = global.R =
+window.R =
 
   init: (opts = {}) ->
     @root   ||= opts.root    || 'main'
     @views  ||= opts.views   || [@root]
-    @render ||= opts.render  || global.render
-    @h      ||= opts.helpers || global._
-    global.onpopstate = @url_changed
+    @render ||= opts.render  || window.render
+    @h      ||= opts.helpers || window._
+    window.onpopstate = @url_changed.bind(@)
     @read()
 
   cache: {}
@@ -27,17 +27,19 @@ module.exports = global.R =
 
     if arguments.length
       if arguments.length == 1
-        @h.each arguments[0], (v, k) ->
-          R.params[k] = if R.setters[k] then R.setters[k](v) else v
+        @_write(k,v) for k,v of arguments[0]
       else
-        @h.each arguments, (k, i) ->
+        for k, i in arguments
           unless i % 2
             v = arguments[i+1]
-            R.params[k] = if R.setters[k] then R.setters[k](v) else v
+            @_write(k,v)
 
-    window.history.replaceState {},
+    history.replaceState {},
       location.pathname, @to_path(@view, @params)
     @url_changed()
+
+  _write: (k,v) ->
+    @params[k] = if @setters[k] then @setters[k](v) else v
 
   toggle: (flag, state) ->
     @write flag, if state?

@@ -1,4 +1,5 @@
-global:R = global:Router = require('pro-router')
+require('pro-router')
+global:Router = R
 require './ref/ref'
 require './switch/switch'
 require './not_found/not_found'

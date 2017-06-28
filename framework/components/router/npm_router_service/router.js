@@ -1,14 +1,14 @@
-module.exports = global.R = {
+window.R = {
   init: function(opts) {
     if (opts == null) {
       opts = {};
     }
     this.root || (this.root = opts.root || 'main');
     this.views || (this.views = opts.views || [this.root]);
-    this.render || (this.render = opts.render || global.render);
-    this.h || (this.h = opts.helpers || global._);
-    global.onpopstate = this.url_changed;
-    return this.read();
+    this.render || (this.render = opts.render || window.render);
+    this.h || (this.h = opts.helpers || window._);
+    window.onpopstate = this.url_changed.bind(this)
+	this.read();
   },
   cache: {},
   getters: {},
@@ -22,35 +22,41 @@ module.exports = global.R = {
     }
   },
   write: function() {
+    var i, j, k, len, ref, v;
     if (arguments.length) {
       if (arguments.length === 1) {
-        this.h.each(arguments[0], function(v, k) {
-          return R.params[k] = R.setters[k] ? R.setters[k](v) : v;
-        });
+        ref = arguments[0];
+        for (k in ref) {
+          v = ref[k];
+          this._write(k, v);
+        }
       } else {
-        this.h.each(arguments, function(k, i) {
-          var v;
+        for (i = j = 0, len = arguments.length; j < len; i = ++j) {
+          k = arguments[i];
           if (!(i % 2)) {
             v = arguments[i + 1];
-            return R.params[k] = R.setters[k] ? R.setters[k](v) : v;
+            this._write(k, v);
           }
-        });
+        }
       }
     }
-    window.history.replaceState({}, location.pathname, this.to_path(this.view, this.params));
-    return this.url_changed();
+    history.replaceState({}, location.pathname, this.to_path(this.view, this.params));
+    this.url_changed();
+  },
+  _write: function(k, v) {
+    this.params[k] = this.setters[k] ? this.setters[k](v) : v;
   },
   toggle: function(flag, state) {
-    return this.write(flag, state != null ? (state ? 1 : void 0) : (!this.params[flag] ? 1 : void 0));
+    this.write(flag, state != null ? (state ? 1 : void 0) : (!this.params[flag] ? 1 : void 0));
   },
   go: function(path) {
     history.pushState({}, null, path);
-    return this.url_changed();
+    this.url_changed();
   },
   read: function() {
     var ref;
     ref = this.split_path(location.pathname), this.view = ref[0], this.params = ref[1];
-    return this._safe_params();
+    this._safe_params();
   },
   split_path: function(path) {
     var list, params, view;
@@ -100,6 +106,7 @@ module.exports = global.R = {
   url_changed: function() {
     this.cache = {};
     this.read();
-    return this.render();
+    this.render();
   }
+
 };
