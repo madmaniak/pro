@@ -1,4 +1,4 @@
-window.R = {
+module.exports = window.R = {
   _location: location,
   _replaceState: history.replaceState.bind(history),
   _pushState: history.pushState.bind(history),

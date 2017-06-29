@@ -1,4 +1,4 @@
-window.R =
+module.exports = window.R =
 
   # local cache
   _location: location
