@@ -6,7 +6,7 @@ module.exports = window.R =
   _pushState: history.pushState.bind(history)
 
   init: (opts = {}) ->
-    @root   ||= opts.root    || 'main'
+    @root   ||= opts.root    || 'root'
     @views  ||= opts.views   || [@root]
     @render ||= opts.render  || window.render
     @h      ||= opts.helpers || window._

@@ -6,7 +6,7 @@ module.exports = window.R = {
     if (opts == null) {
       opts = {};
     }
-    this.root || (this.root = opts.root || 'main');
+    this.root || (this.root = opts.root || 'root');
     this.views || (this.views = opts.views || [this.root]);
     this.render || (this.render = opts.render || window.render);
     this.h || (this.h = opts.helpers || window._);
