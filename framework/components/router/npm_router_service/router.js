@@ -7,7 +7,7 @@ module.exports = window.R = {
       opts = {};
     }
     this.root || (this.root = opts.root || 'root');
-    this.views || (this.views = opts.views || [this.root]);
+    this.views || (this.views = opts.views || window.Views || [this.root]);
     this.render || (this.render = opts.render || window.render);
     this.h || (this.h = opts.helpers || window._);
     window.onpopstate = this.url_changed.bind(this)

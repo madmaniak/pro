@@ -1,5 +1,2 @@
-global:_app = #app
-global:render =
-	L.throttle do
-		global:_app.render
-	, 17 # 60 fps
+var render = do this.render
+global:render =	L.throttle render.bind(#app), 17 # 60 fps

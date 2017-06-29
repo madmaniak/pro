@@ -7,7 +7,7 @@ module.exports = window.R =
 
   init: (opts = {}) ->
     @root   ||= opts.root    || 'root'
-    @views  ||= opts.views   || [@root]
+    @views  ||= opts.views   || window.Views || [@root]
     @render ||= opts.render  || window.render
     @h      ||= opts.helpers || window._
     window.onpopstate = @url_changed.bind(@)

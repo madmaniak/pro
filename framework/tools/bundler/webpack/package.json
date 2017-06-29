@@ -29,6 +29,6 @@
     "backbone-events-standalone": "^0.2.7",
     "imba": "somebee/imba",
     "lodash": "^4.11.1",
-    "pro-router": "3.5.0"
+    "pro-router": "3.6.0"
   }
 }
