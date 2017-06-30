@@ -46,7 +46,10 @@ module.exports = window.R =
     @url_changed()
 
   _write: (k,v) ->
-    @params[k] = @_encodeURIComponent( if @setters[k] then @setters[k](v) else v )
+    value = if @setters[k] then @setters[k](v) else v
+    if value
+    then @params[k] = @_encodeURIComponent(value)
+    else delete @params[k]
 
   toggle: (flag, state) ->
     @write flag, if state?
@@ -77,7 +80,7 @@ module.exports = window.R =
       /^_/.test pair[0]
 
   to_path: (view = @view, params = @safe_params) ->
-    array = @h.flatten @h.reject( @h.toPairs(params), (p) -> !p[1] )
+    array = @h.flatten @h.toPairs(params)
     array.unshift(view) if view and view != @root
     '/' + array.join('/')
 

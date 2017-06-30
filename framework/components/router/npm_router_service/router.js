@@ -49,7 +49,8 @@ module.exports = window.R = {
     this.url_changed();
   },
   _write: function(k, v) {
-    this.params[k] = this._encodeURIComponent(this.setters[k] ? this.setters[k](v) : v);
+	var value = this.setters[k] ? this.setters[k](v) : v;
+	value ? this.params[k] = this._encodeURIComponent(value) : delete this.params[k];
   },
   toggle: function(flag, state) {
     this.write(flag, state != null ? (state ? 1 : void 0) : (!this.params[flag] ? 1 : void 0));
@@ -90,9 +91,7 @@ module.exports = window.R = {
     if (params == null) {
       params = this.safe_params;
     }
-    array = this.h.flatten(this.h.reject(this.h.toPairs(params), function(p) {
-      return !p[1];
-    }));
+    array = this.h.flatten(this.h.toPairs(params));
     if (view && view !== this.root) {
       array.unshift(view);
     }
