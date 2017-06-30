@@ -49,7 +49,7 @@ module.exports = window.R = {
     this.url_changed();
   },
   _write: function(k, v) {
-    this.params[k] = this.setters[k] ? this.setters[k](v) : v;
+    this.params[k] = this._encodeURIComponent(this.setters[k] ? this.setters[k](v) : v);
   },
   toggle: function(flag, state) {
     this.write(flag, state != null ? (state ? 1 : void 0) : (!this.params[flag] ? 1 : void 0));
@@ -96,7 +96,7 @@ module.exports = window.R = {
     if (view && view !== this.root) {
       array.unshift(view);
     }
-    return '/' + this.h.map(array, this._encodeURIComponent).join('/');
+    return '/' + array.join('/');
   },
   url_changed: function() {
     this.cache = {};
