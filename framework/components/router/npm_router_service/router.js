@@ -2,7 +2,7 @@ module.exports = window.R = {
   _location: location,
   _replaceState: history.replaceState.bind(history),
   _pushState: history.pushState.bind(history),
-  _decodeURI: decodeURI,
+  _decodeURI: decodeURIComponent,
   _encodeURIComponent: encodeURIComponent,
   init: function(opts) {
     if (opts == null) {
@@ -21,9 +21,9 @@ module.exports = window.R = {
   param: function(key) {
     var base;
     if (this.getters[key]) {
-      return (base = this.cache)[key] || (base[key] = this.getters[key](this._decodeURI(this.params[key] || '')));
+      return (base = this.cache)[key] || (base[key] = this.getters[key](this._decodeURIComponent(this.params[key] || '')));
     } else {
-      return this._decodeURI(this.params[key] || '');
+      return this._decodeURIComponent(this.params[key] || '');
     }
   },
   write: function() {

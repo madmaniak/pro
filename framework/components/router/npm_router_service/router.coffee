@@ -4,7 +4,7 @@ module.exports = window.R =
   _location: location
   _replaceState: history.replaceState.bind(history)
   _pushState: history.pushState.bind(history)
-  _decodeURI: decodeURI
+  _decodeURIComponent: decodeURIComponent
   _encodeURIComponent: encodeURIComponent
 
   init: (opts = {}) ->
@@ -23,8 +23,8 @@ module.exports = window.R =
 
   param: (key) ->
     if @getters[key]
-    then @cache[key] ||= @getters[key]( @_decodeURI(@params[key] || '') )
-    else @_decodeURI(@params[key] || '')
+    then @cache[key] ||= @getters[key]( @_decodeURIComponent(@params[key] || '') )
+    else @_decodeURIComponent(@params[key] || '')
 
   write: ->
     # accept arguments keeping key, value, key, value order
