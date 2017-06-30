@@ -2,6 +2,8 @@ module.exports = window.R = {
   _location: location,
   _replaceState: history.replaceState.bind(history),
   _pushState: history.pushState.bind(history),
+  _decodeURI: decodeURI,
+  _encodeURIComponent: encodeURIComponent,
   init: function(opts) {
     if (opts == null) {
       opts = {};
@@ -19,9 +21,9 @@ module.exports = window.R = {
   param: function(key) {
     var base;
     if (this.getters[key]) {
-      return (base = this.cache)[key] || (base[key] = this.getters[key](decodeURI(this.params[key] || '')));
+      return (base = this.cache)[key] || (base[key] = this.getters[key](this._decodeURI(this.params[key] || '')));
     } else {
-      return decodeURI(this.params[key] || '');
+      return this._decodeURI(this.params[key] || '');
     }
   },
   write: function() {
@@ -94,7 +96,7 @@ module.exports = window.R = {
     if (view && view !== this.root) {
       array.unshift(view);
     }
-    return '/' + array.join('/');
+    return this._encodeURIComponent( '/' + array.join('/') );
   },
   url_changed: function() {
     this.cache = {};

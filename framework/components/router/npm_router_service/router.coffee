@@ -4,6 +4,8 @@ module.exports = window.R =
   _location: location
   _replaceState: history.replaceState.bind(history)
   _pushState: history.pushState.bind(history)
+  _decodeURI: decodeURI
+  _encodeURIComponent: encodeURIComponent
 
   init: (opts = {}) ->
     @root   ||= opts.root    || 'root'
@@ -21,8 +23,8 @@ module.exports = window.R =
 
   param: (key) ->
     if @getters[key]
-    then @cache[key] ||= @getters[key]( decodeURI(@params[key] || '') )
-    else decodeURI(@params[key] || '')
+    then @cache[key] ||= @getters[key]( @_decodeURI(@params[key] || '') )
+    else @_decodeURI(@params[key] || '')
 
   write: ->
     # accept arguments keeping key, value, key, value order
@@ -77,7 +79,7 @@ module.exports = window.R =
   to_path: (view = @view, params = @safe_params) ->
     array = @h.flatten @h.reject( @h.toPairs(params), (p) -> !p[1] )
     array.unshift(view) if view and view != @root
-    '/' + array.join('/')
+    @_encodeURIComponent( '/' + array.join('/') )
 
   url_changed: ->
     @cache = {}
