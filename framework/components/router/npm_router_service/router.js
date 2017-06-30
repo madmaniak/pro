@@ -2,7 +2,7 @@ module.exports = window.R = {
   _location: location,
   _replaceState: history.replaceState.bind(history),
   _pushState: history.pushState.bind(history),
-  _decodeURI: decodeURIComponent,
+  _decodeURIComponent: decodeURIComponent,
   _encodeURIComponent: encodeURIComponent,
   init: function(opts) {
     if (opts == null) {
