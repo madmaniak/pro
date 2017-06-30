@@ -79,7 +79,7 @@ module.exports = window.R =
   to_path: (view = @view, params = @safe_params) ->
     array = @h.flatten @h.reject( @h.toPairs(params), (p) -> !p[1] )
     array.unshift(view) if view and view != @root
-    @_encodeURIComponent( '/' + array.join('/') )
+    '/' + @h.map(array, @_encodeURIComponent).join('/')
 
   url_changed: ->
     @cache = {}

@@ -96,7 +96,7 @@ module.exports = window.R = {
     if (view && view !== this.root) {
       array.unshift(view);
     }
-    return this._encodeURIComponent( '/' + array.join('/') );
+    return '/' + this.h.map(array, this._encodeURIComponent).join('/');
   },
   url_changed: function() {
     this.cache = {};
