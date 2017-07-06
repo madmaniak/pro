@@ -65,9 +65,12 @@ module.exports = window.R = {
     this._safe_params();
   },
   split_path: function(path) {
+    if (path.length == 1) {
+      return [this.root, {}];
+	}
     var list, params, view;
     list = this.h.compact(path.split("/"));
-    view = this._existance(list.length % 2 ? list.shift() : this.root);
+    view = this._existance(list.shift());
     params = this.h.fromPairs(this.h.chunk(list, 2));
     return [view, params];
   },
@@ -92,10 +95,7 @@ module.exports = window.R = {
       params = this.safe_params;
     }
     array = this.h.flatten(this.h.toPairs(params));
-    if (view && view !== this.root) {
-      array.unshift(view);
-    }
-    return '/' + array.join('/');
+    return '/' + view + '/' + array.join('/');
   },
   url_changed: function() {
     this.cache = {};

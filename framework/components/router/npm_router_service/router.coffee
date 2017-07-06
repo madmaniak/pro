@@ -67,8 +67,9 @@ module.exports = window.R =
     @_safe_params()
 
   split_path: (path) ->
+    return [ @root, {} ] if path.length == 1
     list = @h.compact path.split("/")
-    view = @_existance if list.length % 2 then list.shift() else @root
+    view = @_existance list.shift()
     params = @h.fromPairs @h.chunk(list, 2)
     [ view, params ]
 
@@ -81,8 +82,7 @@ module.exports = window.R =
 
   to_path: (view = @view, params = @safe_params) ->
     array = @h.flatten @h.toPairs(params)
-    array.unshift(view) if view and view != @root
-    '/' + array.join('/')
+    '/' + view + '/' + array.join('/')
 
   url_changed: ->
     @cache = {}
