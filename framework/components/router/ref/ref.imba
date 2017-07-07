@@ -1,6 +1,6 @@
 require './ref.scss'
 
-tag ref
+tag ref < a
 
 	prop view
 	prop target
@@ -10,16 +10,17 @@ tag ref
 		@r = R
 
 	def render
-		<self.active=is_active>
+		<self.active=is_active href=link>
 
 	def is_active
 		var view, params
 		[ view, params ] = @r.split_path(link)
 		view == @r:view && L.isEqual params, @r:params
 
-	def ontap
+	def ontap e
+		e.halt
 		return if is_active
-		@r.go link
+		@r.go dom:href
 		window.scrollTo 0, 0
 
 	def link
