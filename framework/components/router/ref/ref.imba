@@ -4,11 +4,13 @@ tag ref < a
 	prop target
 	prop go
 
+	attr onclick
+
 	def setup
 		@r = R
 
 	def render
-		<self.active=is_active href=link>
+		<self.active=is_active href=link onclick='return false'>
 
 	def is_active
 		var view, params
@@ -16,7 +18,6 @@ tag ref < a
 		view == @r:view && L.isEqual params, @r:params
 
 	def ontap e
-		e.halt
 		return if is_active
 		@r.go dom:href
 		window.scrollTo 0, 0
