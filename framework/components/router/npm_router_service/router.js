@@ -27,24 +27,14 @@ module.exports = window.R = {
     }
   },
   write: function() {
-    var i, j, k, len, ref, v;
-    if (arguments.length) {
-      if (arguments.length === 1) {
-        ref = arguments[0];
-        for (k in ref) {
-          v = ref[k];
-          this._write(k, v);
-        }
-      } else {
-        for (i = j = 0, len = arguments.length; j < len; i = ++j) {
-          k = arguments[i];
-          if (!(i % 2)) {
-            v = arguments[i + 1];
-            this._write(k, v);
-          }
-        }
-      }
-    }
+    var i, j, k, len, v;
+	for (i = j = 0, len = arguments.length; j < len; i = ++j) {
+	  k = arguments[i];
+	  if (!(i % 2)) {
+		v = arguments[i + 1];
+		this._write(k, v);
+	  }
+	}
     this._replaceState({}, this._location.pathname, this.to_path(this.view, this.params));
     this.url_changed();
   },

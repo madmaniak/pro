@@ -28,18 +28,12 @@ module.exports = window.R =
 
   write: ->
     # accept arguments keeping key, value, key, value order
-    # or a hash as a first argument
     # serialize using setters
     # if no argument given just refresh url and rerender
-
-    if arguments.length
-      if arguments.length == 1
-        @_write(k,v) for k,v of arguments[0]
-      else
-        for k, i in arguments
-          unless i % 2
-            v = arguments[i+1]
-            @_write(k,v)
+    for k, i in arguments
+      unless i % 2
+        v = arguments[i+1]
+        @_write(k,v)
 
     @_replaceState {},
       @_location.pathname, @to_path(@view, @params)
