@@ -8,4 +8,4 @@ assets:
   ports:
     - "8080:8080"
   working_dir: /pro/framework/tools/bundler/webpack
-  command: npm run webpack-server
+  command: webpack --watch --config webpack.prod.config.js

@@ -9,7 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer-loader": "^3.2.0",
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.10.0",
@@ -23,12 +23,12 @@
     "style-loader": "^0.13.1",
     "svgo": "^0.6.4",
     "svgo-loader": "^1.1.0",
-    "url-loader": "^0.5.7"
-  },
-  "dependencies": {
+    "url-loader": "^0.5.7",
     "backbone-events-standalone": "^0.2.7",
     "imba": "somebee/imba",
     "lodash": "^4.11.1",
-    "pro-router": "4.3.0"
+    "pro-router": "^4.3.0",
+    "compression-webpack-plugin": "^1.0.0",
+    "webpack": "^3.5.5"
   }
 }
