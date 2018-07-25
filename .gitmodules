@@ -1,0 +1,3 @@
+[submodule "pro-framework"]
+	path = framework
+	url = git@github.com:madmaniak/pro-framework.git
